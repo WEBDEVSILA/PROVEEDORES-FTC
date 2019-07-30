@@ -1,0 +1,676 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <!--4DINCLUDE head.shtml-->
+  </head>
+  <body class="h-100">
+    
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+        <aside class="main-sidebar col-11 col-md-3 col-lg-2 px-0">
+         
+          <div class="main-navbar">
+            <img id="main-logo" style="max-height: 80px; display:block; margin: auto; margin-top: 20px;" src="Assets/logoTelecolombia.png" >                  
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap  p-0">              
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>                
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <div class="nav-link" >
+                  <i class="material-icons" >person</i>
+                  <span ><!--4DTEXT [Solic_Proveedor]Nombre--></span>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " id="save" href="#">
+                  <i class="material-icons">save</i>
+                  <span>Guardar</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <form  method="post" id="form-logOut" enctype="multipart/form-data" action="/LogIn">
+                  <a class="nav-link text-danger" id="logOut" href="#">                    
+                      <i class="material-icons" style="color:rgba(255, 0, 0, 0.658)">logout</i>
+                      <span>Salir</span>                    
+                  </a>
+                </form>   
+              </li>             
+            </ul>
+          </div>
+        </aside>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+              <div class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">                               
+              </div>
+              <ul class="navbar-nav border-left flex-row ">                
+                <li class="nav-item dropdown">
+                  <div class="nav-link text-nowrap px-3" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons" >person</i>
+                    <span><!--4DTEXT [Solic_Proveedor]Nombre--></span>
+                  </div>
+                  <div class="dropdown-menu dropdown-menu-small">                   
+                    <a class="dropdown-item" href="components-blog-posts.html">
+                      <i class="material-icons">save</i> Guardar</a>                  
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="index.html">
+                      <i class="material-icons text-danger">&#xE879;</i> Salir </a>
+                  </div>
+                </li>
+              </ul>
+              <nav class="nav">
+                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                  <i class="material-icons">&#xE5D2;</i>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <!-- / .main-navbar -->
+          <form method="post"  enctype="multipart/form-data" action="/juridico" id="form-id">
+            <div class="main-content-container container-fluid px-4">
+              <!-- Page Header -->
+              <div class="page-header row no-gutters py-4">
+                <div class="col-12 col-sm-12 text-center text-sm-left mb-0">                
+                  <h3 class="page-title">Proveedores Persona Jurídica</h3>                                                  
+                </div>
+              </div>
+              <!-- End Page Header -->
+              <input type="hidden" value="<!--4DTEXT [Solic_Proveedor]CC-->" name="empleadoId">
+              <input type="hidden" value="send" name="enviar" id="enviar">
+             
+              <div class="alert alert-success card" style="border-radius: 10px; <!--4DIF (guardado=True)--> <!--4DELSE-->display: none <!--#4DENDIF-->" id="alerta"> 
+                <div class="row">
+                  <div class="col-sm-10 col-md-11">
+                    <div class="col-sm-6" style="font-weight: bold">
+                      Datos Guardados con Exito
+                    </div>                                   
+                    <div class="col-sm-12" style="font-style: italic;">
+                      * Recuerde que para realizar el proceso de validación debe finalizar y enviar este formulario.
+                    </div>
+                  </div>
+                  <div class="col-sm-2 col-md-1" style="display: flex; align-items: center"> 
+                    <button type="button" class="btn btn-success" id="clear" >
+                      <i class="material-icons" style="font-weight: bold">clear</i>
+                    </button>  
+                  </div>
+                </div>
+              </div>                  
+             	
+              <!--4DSCRIPT/WEB_Lists-->
+              <div class="row">
+                <!-- Datos Básicos-->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                  <div class="card">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">Datos Básicos</h6>
+                    </div>
+                    <div class="card-body pt-0">
+                      <br>
+                      <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group ">
+                                <label class="control-label">Razón Social - Nombre</label>
+                                <input type="text" class="form-control" id="razonSocial" name="razonSocial" required value="<!--4DTEXT [Proveedor]Nombre_Razon_Social-->" required autocomplete=off>
+                            </div>   
+                        </div>
+                        <div class="col-sm-4" id="padreEsp">
+                            <div class="form-group">
+                                <label class="control-label" >Especialidad</label>                                                
+                                <select name="especialidad" class="form-control" id="especialidad" required>
+                                  <option value="<!--4DTEXT [Proveedor]Especialidad-->"><!--4DTEXT [Proveedor]Especialidad--></option>
+                                  <option value=""></option>    
+                                  <option value="Otra">Otra</option>    
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="display:none" id="otra">
+                            <div class="form-group ">
+                                <label class="control-label">¿Cuál?</label>
+                                <input type="text" class="form-control" id="otraEsp" name="otraEsp" required autocomplete=off>
+                            </div>  
+                        </div>
+                      </div>    
+                      <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label class="control-label" >Tipo Identificación</label>                                                
+                                <select name="tipoID" class="form-control" id="tipoID" required>
+                                
+                                  <option value="<!--4DTEXT [Proveedor]Tipo_ID-->"><!--4DTEXT [Proveedor]Tipo_ID--></option>
+                                  <!--4DLOOP tipoId-->
+                                    <option value="<!--4DTEXT tipoId{tipoId}-->" <!--4DIF ([Proveedor]Tipo_ID=tipoId{tipoId})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT tipoId{tipoId}--></option>
+                                  <!--4DENDLOOP-->
+                                </select>   
+                                                             
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label class="control-label" >Identificación</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="identificacion" value="<!--4DTEXT [Proveedor]Nit-->" readonly >
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group ">
+                                <label class="control-label">DV</label>
+                                <input type="number" class="form-control" name="dv" id="dv" value="<!--4DTEXT [Proveedor]DV-->" required autocomplete=off>                             
+                            </div>   
+                        </div>    
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group ">
+                                <label class="control-label">Primer Apellido Representante Legal</label>                                    
+                                <input type="text" class="form-control" name="primerApellido" value="<!--4DTEXT [Proveedor]Primer_Apellido-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" >Segundo Apellido Representante Legal</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="segundoApellido" value="<!--4DTEXT [Proveedor]Segundo_Apellido-->"  required autocomplete=off>                                                
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group ">
+                                <label class="control-label">Primer Nombre Representante Legal</label>                                    
+                                <input type="text" class="form-control" name="primerNombre" value="<!--4DTEXT [Proveedor]Primer_Nombre-->" required autocomplete=off>
+                            </div>   
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" >Segundo Nombre Representante Legal</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="segundoNombre" value="<!--4DTEXT [Proveedor]Segundo_Nombre-->" autocomplete=off>
+                            </div>
+                        </div>
+                      </div>                          
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label class="control-label">Cédula Representante Legal</label>                                    
+                                <input type="text" class="form-control" name="cedRepLegal" value="<!--4DTEXT [Proveedor]Cedula_Rep_legal-->" required autocomplete=off>
+                            </div>   
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >E-mail Representante Legal</label>                                                
+                                <input type="email" class="form-control" placeholder=""  name="emailRepLegal" value="<!--4DTEXT [Proveedor]Email_Rep_Legal-->" required autocomplete=off>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label class="control-label">Nombre del Contacto Comercial</label>                                    
+                                <input type="text" class="form-control" name="nombreContacto" value="<!--4DTEXT [Proveedor]Contacto-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >Cargo del Contacto</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="cargoContacto" value="<!--4DTEXT [Proveedor]Cargo_Contac-->" required autocomplete=off>                                                
+                            </div>
+                        </div>
+                      </div> 
+
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label class="control-label">E-mail</label>                                    
+                                <input type="email" class="form-control" name="email1" value="<!--4DTEXT [Proveedor]E_mail-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >E-mail 2</label>                                                
+                                <input type="email" class="form-control" placeholder=""  name="email2" value="<!--4DTEXT [Proveedor]E_Mail2-->" autocomplete=off>                                                
+                            </div>
+                        </div>                                         
+                      </div> 
+
+                      <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group ">
+                                <label class="control-label">Indicativo</label>                                    
+                                <input type="text" class="form-control" name="ind" value="<!--4DTEXT [Proveedor]Indicativo-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" >Teléfono</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="telefono" value="<!--4DTEXT [Proveedor]Telefono-->" required autocomplete=off>                                                
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group ">
+                                <label class="control-label">Extensión</label>                                    
+                                <input type="text" class="form-control" name="extension" value="<!--4DTEXT [Proveedor]Ext-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" >Celular</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="celular" value="<!--4DTEXT [Proveedor]Celular-->" required autocomplete=off> 
+                            </div>
+                        </div>
+                      </div>    
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group ">
+                                <label class="control-label">Dirección</label>                                    
+                                <input type="text" class="form-control" name="direccion" value="<!--4DTEXT [Proveedor]Direccion-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                                        
+                      </div>    
+
+                      <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group ">
+                                <label class="control-label">Ciudad</label>                                                                   
+                                <select name="ciudad" id="ciudad" class="form-control" required>
+                                  <option value=""></option>
+                                  <!--4DLOOP ciudad-->
+                                    <option value="<!--4DTEXT ciudad{ciudad}-->" <!--4DIF ([Proveedor]Ciudad=ciudad{ciudad})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT ciudad{ciudad}--></option>
+                                  <!--4DENDLOOP-->
+                                </select>
+                            </div>   
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" >Estado</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="estado" value="<!--4DTEXT [Proveedor]Pais-->" autocomplete=off >                                                
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group ">
+                                <label class="control-label">Código Postal</label>
+                                <input type="text" class="form-control" name="codigoPostal" value="<!--4DTEXT [Proveedor]Cod_Postal-->" autocomplete=off>                             
+                            </div>   
+                        </div>                     
+                      </div>    
+                         
+                      <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group ">
+                                <label class="control-label">Url Página Web</label>
+                                <input type="url" class="form-control" name="url" value="<!--4DTEXT [Proveedor]Url-->" autocomplete=off>                             
+                            </div>   
+                        </div>     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Fin Datos Básicos -->                                   
+              </div>
+              
+              <div class="row">
+                <!-- Información Tributaria -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                  <div class="card">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">Información Tributaria</h6>
+                    </div>
+                    <div class="card-body pt-0">
+                      <br>
+                      <div class="row">                                                 
+                        <div class="col-sm-2">
+                          <div class="custom-control custom-checkbox mb-1">
+                            <input type="checkbox" class="custom-control-input" id="autoretenedor" name="autoretenedor" <!--4DIF ([Proveedor]Autoretenedor = True)-->checked<!--4DENDIF-->>
+                            <label class="custom-control-label" for="autoretenedor">Autoretenedor</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="custom-control custom-checkbox mb-1">
+                            <input type="checkbox" class="custom-control-input" id="granContrib" name="granContrib" <!--4DIF ([Proveedor]Gran_Contribuyente = True)-->checked<!--4DENDIF-->>
+                            <label class="custom-control-label" for="granContrib">Gran Contribuyente</label>
+                          </div>
+                        </div> 
+                        <div class="col-sm-2">
+                          <div class="custom-control custom-checkbox mb-1">
+                            <input type="checkbox" class="custom-control-input" id="entGub" name="entGub" <!--4DIF ([Proveedor]Ent_gubernamental = True)-->checked<!--4DENDIF-->>
+                            <label class="custom-control-label" for="entGub">Ent. Gubernamental</label>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="custom-control custom-checkbox mb-1">
+                            <input type="checkbox" class="custom-control-input" id="delExterior" name="delExterior" <!--4DIF ([Proveedor]Proveedor_Exterior = True)-->checked<!--4DENDIF-->>
+                            <label class="custom-control-label" for="delExterior">Del Exterior</label>
+                          </div>
+                        </div> 
+                        <div class="col-sm-2">
+                          <div class="custom-control custom-checkbox mb-1">
+                            <input type="checkbox" class="custom-control-input" id="entSinAnim" name="entSinAnim" <!--4DIF ([Proveedor]Ent_Sinanimo = True)-->checked<!--4DENDIF-->>
+                            <label class="custom-control-label" for="entSinAnim">Ent. Sin Animo de Lucro</label>
+                          </div>
+                        </div>
+
+                      </div>  
+                      <br>
+
+                      <div class="row">    
+                        <div class="col-sm-3">
+                          <label class="control-label" >Regimen IVA</label>
+                        </div>                   
+                        <div class="col-sm-9">
+                          <select name="regimen" id="regimen" class="form-control " required>
+                            <option value=""></option>
+                            <option value="Responsable IVA" <!--4DIF ([Proveedor]Regimen_IVA="Responsable IVA")-->selected<!--4DENDIF--> >Responsable IVA</option>
+                            <option value="No Responsable IVA"  <!--4DIF ([Proveedor]Regimen_IVA="No Responsable IVA")-->selected<!--4DENDIF-->>No Responsable IVA</option>
+                          </select>
+                        </div>
+                      </div>  
+                      <br>                                           
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <label class="control-label">Dirección RUT</label>
+                          <div >
+                            <input type="text" class="form-control" name="direccionRut" value="<!--4DTEXT [Proveedor]Direccion_Rut-->" autocomplete=off >
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" >Teléfono RUT</label>
+                                <input type="text" class="form-control" placeholder=""  name="telefonoRut" value="<!--4DTEXT [Proveedor]Telefono_Rut-->" autocomplete=off> 
+                            </div>
+                        </div>                                                     
+                      </div>   
+
+                    </div>
+                  </div>
+                </div>
+                <!-- Fin Información Tributaria -->                                   
+              </div>
+
+              <div class="row">
+                <!-- Actividades -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                  <div class="card">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">Actividades</h6>
+                    </div>
+                    <div class="card-body pt-0">
+                      <br>
+                      <div class="form-group">
+                        <div class="row">                                                                                    
+                            <div class="row col-sm-4">
+                                <label class="control-label col-sm-5">Principal</label>
+                                <div class="col-sm-7">
+                                    <input type="number" id="principal" class="form-control" name="actividadPrincipal" required
+                                        value="<!--4DTEXT [Proveedor]Codigo_ciiu_prin-->" autocomplete=off 
+                                        onKeyPress="if(this.value.length==4) return false;">
+                                </div>
+                            </div>
+                            <div class="row col-sm-8">
+                                <label class="control-label col-sm-2">CIIU 1</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="ciiu1" class="form-control" name="ciiu1"
+                                        value="<!--4DTEXT [Proveedor]CIIU_Des-->" autocomplete=off readonly
+                                        style="background-color: white;" tabindex="-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                   
+                    <div class="form-group">
+                        <div class="row">                                                                                    
+                            <div class="row col-sm-4">
+                                <label class="control-label col-sm-5">Secundaria</label>
+                                <div class="col-sm-7">
+                                    <input type="number" id="secundaria" class="form-control" name="actividadSecundaria" 
+                                        value="<!--4DTEXT [Proveedor]Codigo_ciiu_sec-->" autocomplete=off 
+                                        onKeyPress="if(this.value.length==4) return false;">
+                                </div>
+                            </div>
+                            <div class="row col-sm-8">
+                                <label class="control-label col-sm-2">CIIU 2</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="ciiu2" class="form-control" name="ciiu2"
+                                        value="<!--4DTEXT [Proveedor]CIIU_Des2-->" autocomplete=off readonly
+                                        style="background-color: white;" tabindex="-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">                                                                                    
+                            <div class="row col-sm-4">
+                                <label class="control-label col-sm-5">Otra</label>
+                                <div class="col-sm-7">
+                                    <input type="number" id="actividadOtra" class="form-control" name="actividadOtra" 
+                                        value="<!--4DTEXT [Proveedor]Codigo_ciiu_otro-->" autocomplete=off 
+                                        onKeyPress="if(this.value.length==4) return false;">
+                                </div>
+                            </div>
+                            <div class="row col-sm-8">
+                                <label class="control-label col-sm-2">CIIU 3</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="ciiu3" class="form-control" name="ciiu3"
+                                        value="<!--4DTEXT [Proveedor]CIIU_Des3-->" autocomplete=off readonly
+                                        style="background-color: white;" tabindex="-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+
+                      
+                    </div>
+                  </div>
+                </div>
+                <!-- Fin Actividades -->                                   
+              </div>
+            
+              <div class="row">
+                <!-- Forma de Pago -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                  <div class="card">
+                    <div class="card-header border-bottom">
+                      <h6 class="m-0">Forma de Pago</h6>
+                    </div>
+                    <div class="card-body pt-0">
+                      <br>                     
+
+                      <div class="row form-group">
+                        <div class="col-sm-6">
+                          <label class="control-label">Banco</label>
+                          <div >                            
+                            <select name="banco" id="banco" class="form-control" required>
+                              <option value=""></option>
+                              <!--4DLOOP bancos-->
+                                <option value="<!--4DTEXT bancos{bancos}-->" <!--4DIF ([Proveedor]Banco=bancos{bancos})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT bancos{bancos}--></option>
+                              <!--4DENDLOOP-->
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >Cuenta</label>
+                                <input type="text" class="form-control" placeholder=""  name="cuenta" value="<!--4DTEXT [Proveedor]Cuenta_No-->" required autocomplete=off> 
+                            </div>
+                        </div>
+                      </div>    
+                      <div class="row form-group">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >Tipo de Cuenta</label>
+                                
+                                <select name="tipoCuenta" id="tipoCuenta" class="form-control" required>
+                                  <option value=""></option>
+                                  <!--4DLOOP tipoCuent-->
+                                    <option value="<!--4DTEXT tipoCuent{tipoCuent}-->" <!--4DIF ([Proveedor]Tipo_Cuenta=tipoCuent{tipoCuent})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT tipoCuent{tipoCuent}--></option>
+                                  <!--4DENDLOOP-->
+                                </select>
+                            </div>
+                        </div>                      
+                        <div class="col-sm-6 form-group">
+                          <label class="control-label">Cheque o Transferencia</label>                          
+                          <select name="chequeTransf" id="chequeTransf" class="form-control" required>
+                            <option value=""></option>
+                            <!--4DLOOP cheqTrans-->
+                              <option value="<!--4DTEXT cheqTrans{cheqTrans}-->" <!--4DIF ([Proveedor]Cheque=cheqTrans{cheqTrans})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT cheqTrans{cheqTrans}--></option>
+                            <!--4DENDLOOP-->
+                          </select>
+                        </div>                       
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- Fin Forma de Pago -->                                   
+              </div>                             
+
+              <div class="row">
+                <!-- Archivos -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                    <div class="card">
+                      <div class="card-header border-bottom">
+                          <h6 class="m-0">Archivos</h6>
+                      </div>
+                      <div class="card-body pt-0">
+                          <br>                       
+                          <div class="row form-group">
+                              <label class="control-label col-sm-4">RUT</label>
+                              <div class="col-sm-8 row">
+                                 <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"rut")="")-->
+                                    <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this);" required>
+                                 <!--4DELSE-->                              
+                                     <div class="col-md-4">
+                                         <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"rut")--></h5>
+                                     </div>                
+                                     <div class="col-md-8">
+                                        <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this);">
+                                     </div>                      
+                                 <!--4DENDIF-->
+                                
+                              </div>
+                          </div>
+                          <br>
+                          <div class="row form-group">
+                              <label class="control-label col-sm-4">Cédula Representante Legal</label>
+                              <div class="col-sm-8 row">
+                                 <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"cedulaRepLegal")="")-->                                 
+                                 <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this);" required>  
+                                 <!--4DELSE-->                              
+                                     <div class="col-md-4">
+                                         <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"cedulaRepLegal")--></h5>
+                                     </div>                
+                                     <div class="col-md-8">
+                                        <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this);">  
+                                     </div>                      
+                                <!--4DENDIF-->
+                              </div>
+                          </div>
+                          <br>
+                          <div class="row form-group">
+                              <label class="control-label col-sm-4">Cámara de Comercio</label>
+                              <div class="col-sm-8 row">
+                                 <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"camaraComercio")="")-->                                                                  
+                                 <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this);" required>  
+                                 <!--4DELSE-->                              
+                                     <div class="col-md-4">
+                                         <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"camaraComercio")--></h5>
+                                     </div>                
+                                     <div class="col-md-8">                                        
+                                        <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this);">  
+                                     </div>                      
+                                <!--4DENDIF-->
+                              </div>
+                          </div>
+                          <br>                      
+                          <div class="row form-group">
+                              <label class="control-label col-sm-4">Certificación Bancaria</label>
+                              <div class="col-sm-8 row">
+                                 <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"certBancaria")="")-->
+                                 <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this);" required>
+                                 <!--4DELSE-->                              
+                                     <div class="col-md-4">
+                                         <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"certBancaria")--></h5>
+                                     </div>                
+                                     <div class="col-md-8">                                        
+                                        <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this);">
+                                     </div>                      
+                                <!--4DENDIF-->
+                              </div>
+                          </div>
+                          <br>
+                      </div>
+                    </div>
+                </div>
+                <!-- Fin Archivos -->                                   
+              </div>
+              
+              <div class="row">
+                <!-- Autorización -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                    <div class="card">
+                      <div class="card-header border-bottom">
+                          <h6 class="m-0">Autorización</h6>
+                      </div>
+                      <div class="card-body pt-0" style="text-align: justify">
+                          <br>                       
+                          <p>
+                  
+                            Autorizo de forma previa, expresa, consciente, libre e informada a FOXTELECOLOMBIA S.A. (en adelante "FTC"),
+                            en calidad de responsable del tratamiento de mi información personal, sus filiales y/o subsidiarias, o en las
+                            entidades en las cuales ésta, directa o indirectamente, tengan participación accionaria o sean asociados,
+                            domiciliadas
+                            en Colombia o en cualquier otro país, para utilizar los datos personales suministrados en este sitio
+                            web de
+                            acuerdo a las finalidades contempladas en la Política de Privacidad la cual puede consultar en nuestra página
+                            web:
+                            <a target="_blank" rel="noopener noreferrer" href="https://foxtelecolombia.com/politica-privacidad/">https://foxtelecolombia.com/politica-privacidad/</a>.    
+                          </p>
+                  
+                          <p>
+                            Declaro que conozco los derechos que como titular de los mismos puedo ejercer, es decir, los derechos de
+                            acceso,
+                            rectificación, prueba de autorización, oposición y supresión, en la forma establecida en la Política de
+                            Privacidad de FTC.
+                          </p>
+                  
+                          <p>
+                            Declaro y garantizo bajo la gravedad de juramento que la información suministrada es veraz, objetiva, completa
+                            y
+                            verificable, y en caso de falsedad se aplicaran las sanciones contempladas por la Ley y mantendré indemne a
+                            FTC por
+                            cualquier daño o perjuicio derivado de la misma.
+                          </p>
+                          <div class="row" style="display:flex; justify-content: center">
+                            <div class="custom-control custom-radio ">
+                                <input type="radio" id="si" name="autorizacion" value="Si" class="custom-control-input"  required <!--4DIF ([Proveedor]Autorizacion=True)-->checked<!--4DENDIF-->>
+                                <label class="custom-control-label" for="si">Si</label>
+                            </div>
+                            <div style="margin: 10px"></div>
+                            <div class="custom-control custom-radio ">
+                                <input type="radio" id="no" name="autorizacion" value="No" class="custom-control-input" <!--4DIF ([Proveedor]Autorizacion=False)-->checked<!--4DENDIF-->>
+                                <label class="custom-control-label" for="no">No</label>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- Fin Autorización -->                                   
+              </div>
+                                                                 
+              <div class="col-sm-12 col-lg-12" >              
+                <button type="submit" class="btn btn-block btn-lg fox-dark center" id="submitButton" disabled style="max-width: 500px" >Enviar</button>              
+              </div>
+
+            </div>
+          </form>
+          <br>
+          <!--4DINCLUDE footer.shtml-->
+        </main>
+      </div>
+    </div>
+    <script src="./persona_juridica.js"></script>
+    <!--4DINCLUDE scripts.shtml-->
+  </body>
+</html>

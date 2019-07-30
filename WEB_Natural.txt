@@ -1,0 +1,102 @@
+$obWebVars:=WEB_Get_Vars 
+
+$id:=OB Get($obWebVars;"empleadoId")
+QUERY([Solic_Proveedor];[Solic_Proveedor]CC=$id)
+QUERY([Empleados];[Empleados]Cédula=$id)
+guardado:=False
+  //** INFORMACIÓN DE IDENTIFICACIÓN **//
+[Empleados]P_Apellido:=OB Get($obWebVars;"primerApellido")
+[Empleados]S_Apellido:=OB Get($obWebVars;"segundoApellido")
+[Empleados]P_Nombre:=OB Get($obWebVars;"primerNombre")
+[Empleados]S_nombre:=OB Get($obWebVars;"segundoNombre")
+[Empleados]Tipo_Doc:=OB Get($obWebVars;"tipoID")
+  //[Empleados]Cédula:=OB Get($obWebVars;"numeroID")
+[Empleados]Sexo:=OB Get($obWebVars;"sexo")
+[Empleados]Fecha_nacimiento:=OB Get($obWebVars;"fechaNacimiento";Is date)
+[Empleados]Lugar_nacimiento:=OB Get($obWebVars;"lugarNacimiento")
+[Empleados]Edad:=OB Get($obWebVars;"edad";Is real)
+[Empleados]Estado_Civil:=OB Get($obWebVars;"estadoCivil")
+[Empleados]Nacionalidad:=OB Get($obWebVars;"nacionalidad")
+[Empleados]Dirección_Residencia:=OB Get($obWebVars;"dirResidencia")
+[Empleados]Ciudad_Residencia:=OB Get($obWebVars;"ciudadResidencia")
+[Empleados]Teléfonos:=OB Get($obWebVars;"telefonos")
+[Empleados]Celular:=OB Get($obWebVars;"celular")
+[Empleados]e_mail_personal:=OB Get($obWebVars;"email")
+[Empleados]EPS:=OB Get($obWebVars;"EPS")
+[Empleados]ARP:=OB Get($obWebVars;"ARP")
+[Empleados]Fondo_Pensiones:=OB Get($obWebVars;"fondoPensiones")
+
+  //** INFORMACIÓN EMPRESA **//
+[Empleados]Empresa:=OB Get($obWebVars;"empresa")
+[Empleados]Representante_Legal:=OB Get($obWebVars;"repLegal")
+[Empleados]Cedula_Replegal:=OB Get($obWebVars;"CC")
+[Empleados]NIT_Empresa:=OB Get($obWebVars;"nitEmpresa")
+[Empleados]Cargo:=OB Get($obWebVars;"cargo")
+[Empleados]Profesión:=OB Get($obWebVars;"Profesion")
+[Empleados]Extensión_Interna:=OB Get($obWebVars;"extInterna")
+[Empleados]Area_Departamento:=OB Get($obWebVars;"area")
+[Empleados]Supervisor:=OB Get($obWebVars;"supervisor")
+[Empleados]Ica:=OB Get($obWebVars;"ica")
+[Empleados]R_Fuente:=OB Get($obWebVars;"fuente")
+[Empleados]Direccion_Rut:=OB Get($obWebVars;"direccionRut")
+[Empleados]Telefono_Rut:=OB Get($obWebVars;"telefonoRut")
+
+  //** ACTIVIDADES **//
+[Empleados]Codigo_ciiu_princ:=OB Get($obWebVars;"actividadPrincipal")
+[Empleados]Codigo_ciiu_sec:=OB Get($obWebVars;"actividadSecundaria")
+[Empleados]Codigo_ciiu_otro:=OB Get($obWebVars;"actividadOtra")
+[Empleados]Oupacion:=OB Get($obWebVars;"ocupacion")
+[Empleados]CIIU_Des:=OB Get($obWebVars;"ciiu1")
+[Empleados]CIIU_Des2:=OB Get($obWebVars;"ciiu2")
+[Empleados]CIIU_Des3:=OB Get($obWebVars;"ciiu3")
+
+  //**FORMA DE PAGO  **//
+[Empleados]Banco_Corporacion:=OB Get($obWebVars;"banco")
+[Empleados]Cuenta_No:=OB Get($obWebVars;"cuenta")
+[Empleados]Tipo_Cuenta:=OB Get($obWebVars;"tipoCuenta")
+[Empleados]Cheque_Transf:=OB Get($obWebVars;"chequeTransf")
+
+
+
+  //** ARCHIVOS **//
+
+C_TEXT($vPartName;$vPartMimeType;$vPartFileName;$vDestinationFolder)
+C_BLOB($vPartContentBlob)
+C_LONGINT($i)
+C_OBJECT($obDoc)
+
+$vDestinationFolder:=Get 4D folder(Current resources folder)+"documentos_proveedores"+Folder separator+String($id)+Folder separator
+
+If (Test path name($vDestinationFolder)#Is a folder)
+	CREATE FOLDER($vDestinationFolder;*)
+End if 
+
+For ($i;1;WEB Get body part count)
+	WEB GET BODY PART($i;$vPartContentBlob;$vPartName;$vPartMimeType;$vPartFileName)
+	
+	If ($vPartFileName#"")
+		$rutaDoc:=$vDestinationFolder+$vPartFileName
+		BLOB TO DOCUMENT($rutaDoc;$vPartContentBlob)
+		OB SET([Empleados]Ruta_Adjuntos;$vPartName;$rutaDoc)
+		OB SET([Empleados]Nombre_Adjuntos;$vPartName;$vPartFileName)
+	End if 
+	
+End for 
+
+
+If (OB Get($obWebVars;"autorizacion")="Si")
+	[Empleados]Autorizacion:=True
+Else 
+	[Empleados]Autorizacion:=False
+End if 
+
+
+SAVE RECORD([Empleados])
+guardado:=True
+QUERY([Solic_Proveedor];[Solic_Proveedor]CC=[Empleados]Cédula)
+
+If (OB Get($obWebVars;"enviar")="send")
+	WEB SEND FILE("envio.shtml")
+Else 
+	WEB SEND FILE("persona-natural.shtml")
+End if 

@@ -1,0 +1,711 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <!--4DINCLUDE head.shtml-->
+  </head>
+  <body class="h-100">
+ 
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+        <aside class="main-sidebar col-11 col-md-3 col-lg-2 px-0">
+         
+          <div class="main-navbar">
+            <img id="main-logo" style="max-height: 80px; display:block; margin: auto; margin-top: 20px;" src="Assets/logoTelecolombia.png" >                  
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap  p-0">              
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>                
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <div class="nav-link" >
+                  <i class="material-icons" >person</i>
+                  <span ><!--4DTEXT [Solic_Proveedor]Nombre--></span>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " id="save" href="#">
+                  <i class="material-icons">save</i>
+                  <span>Guardar</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <form  method="post" id="form-logOut" enctype="multipart/form-data" action="/LogIn">
+                    <a class="nav-link text-danger" id="logOut" href="#">                    
+                        <i class="material-icons" style="color:rgba(255, 0, 0, 0.658)">logout</i>
+                        <span>Salir</span>                    
+                    </a>
+                </form>                
+              </li>             
+            </ul>
+          </div>
+        </aside>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+          <div class="main-navbar sticky-top bg-white">
+            <!-- Main Navbar -->
+            <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+              <div class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">                               
+              </div>
+              <ul class="navbar-nav border-left flex-row ">                
+                <li class="nav-item dropdown">
+                  <div class="nav-link  text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons" >person</i>
+                    <span><!--4DTEXT [Solic_Proveedor]Nombre--></span>
+                  </div>
+                  <div class="dropdown-menu dropdown-menu-small">                   
+                    <a class="dropdown-item" href="components-blog-posts.html">
+                      <i class="material-icons">save</i> Guardar</a>                  
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="index.html">
+                      <i class="material-icons text-danger">&#xE879;</i> Salir </a>
+                  </div>
+                </li>
+              </ul>
+              <nav class="nav">
+                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                  <i class="material-icons">&#xE5D2;</i>
+                </a>
+              </nav>
+            </nav>
+          </div>
+          <!-- / .main-navbar -->
+            <form  method="post" id="form-id" enctype="multipart/form-data" action="/natural">
+                <div class="main-content-container container-fluid px-4">
+                    <!-- Page Header -->
+                    <div class="page-header row no-gutters py-4">
+                        <div class="col-12 col-sm-12 text-center text-sm-left mb-0">
+                            <h3 class="page-title">Proveedores Persona Natural </h3>
+                        </div>
+                    </div>
+                    <!-- End Page Header -->
+                    <input type="hidden" value="<!--4DTEXT [Solic_Proveedor]CC-->" name="empleadoId">
+                    <input type="hidden" value="send" name="enviar" id="enviar">
+                    
+                    <div class="alert alert-success card" style="border-radius: 10px;  <!--#4DIF (guardado=True)--> <!--4DELSE-->display: none <!--#4DENDIF-->" id="alerta">
+                        <div class="row">
+                            <div class="col-sm-10 col-md-11">
+                                <div class="col-sm-6" style="font-weight: bold">
+                                    Datos Guardados con Exito
+                                </div>
+                                <div class="col-sm-12" style="font-style: italic;">
+                                    * Recuerde que para realizar el proceso de validación debe finalizar y enviar este formulario.
+                                </div>
+                            </div>
+                            <div class="col-sm-2 col-md-1" style="display: flex; align-items: center">
+                                <button type="button" class="btn btn-success" id="clear">
+                                    <i class="material-icons" style="font-weight: bold">clear</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--4DSCRIPT/WEB_Lists-->
+                    <div class="row">
+                        <!-- Datos Básicos-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Información de Identificación y Ubicación</h6>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <br>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Primer Apellido</label>
+                                                <input type="text" class="form-control" name="primerApellido" required value="<!--4DTEXT [Empleados]P_Apellido-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Segundo Apellido</label>
+                                                <input type="text" class="form-control" placeholder="" name="segundoApellido" required value="<!--4DTEXT [Empleados]S_Apellido-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Primer Nombre</label>
+                                                <input type="text" class="form-control" name="primerNombre" required value="<!--4DTEXT [Empleados]P_Nombre-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Segundo Nombre</label>
+                                                <input type="text" class="form-control" placeholder="" name="segundoNombre" value="<!--4DTEXT [Empleados]S_nombre-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Tipo de Identificación</label>                                                                                                  
+                                                <select name="tipoID" class="form-control" id="tipoID" required>                                
+                                                    <option value="<!--4DTEXT [Empleados]Tipo_Doc-->"><!--4DTEXT [Empleados]Tipo_Doc--></option>
+                                                    <!--4DLOOP tipoId-->
+                                                      <option value="<!--4DTEXT tipoId{tipoId}-->" <!--4DIF ([Empleados]Tipo_Doc=tipoId{tipoId})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT tipoId{tipoId}--></option>
+                                                    <!--4DENDLOOP-->
+                                                  </select> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Número Identificación</label>
+                                                <input type="text" class="form-control" placeholder="" required name="numeroID" value="<!--4DTEXT [Empleados]Cédula-->" readonly autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Sexo</label>
+                                                <select name="sexo" required class="form-control">
+                                                    <option value=""></option>
+                                                    <option value="Masculino" <!--4DIF ([Empleados]Sexo = "Masculino")-->selected<!--4DENDIF-->>Masculino</option>
+                                                    <option value="Femenino" <!--4DIF ([Empleados]Sexo = "Femenino")-->selected<!--4DENDIF-->>Femenino</option>
+                                                    <option value="Otro" <!--4DIF ([Empleados]Sexo = "Otro")-->selected<!--4DENDIF-->>Otro</option>
+                                                </select> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Fecha de Nacimiento</label>
+                                                <input type="date" class="form-control" id="fechaNacim" placeholder="" required name="fechaNacimiento"  value="<!--4DTEXT Substring(String([Empleados]Fecha_nacimiento;ISO date);1;10)-->" >
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Lugar Nacimiento</label>
+                                                <input type="text" class="form-control" name="lugarNacimiento" required value="<!--4DTEXT [Empleados]Lugar_nacimiento-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Edad</label>
+                                                <input type="number" class="form-control" name="edad" id="edad" readonly style="background-color: white" value="<!--4DTEXT [Empleados]Edad-->" >
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Estado Civil</label>                                                
+                                                <select name="estadoCivil" class="form-control" id="estadoCivil" required>                                
+                                                    <option value=""></option>
+                                                    <!--4DLOOP estadoCivil-->
+                                                        <option value="<!--4DTEXT estadoCivil{estadoCivil}-->" <!--4DIF ([Empleados]Estado_Civil=estadoCivil{estadoCivil})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT estadoCivil{estadoCivil}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select> 
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Nacionalidad</label>
+                                                <input type="text" class="form-control" name="nacionalidad" required value="<!--4DTEXT [Empleados]Nacionalidad-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Dirección Residencia</label>
+                                                <input type="text" class="form-control" placeholder="" required name="dirResidencia" value="<!--4DTEXT [Empleados]Dirección_Residencia-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Ciudad Residencia</label>                                                
+                                                <select name="ciudadResidencia" id="ciudadResidencia" class="form-control" required>
+                                                    <option value=""></option>
+                                                    <!--4DLOOP ciudad-->
+                                                      <option value="<!--4DTEXT ciudad{ciudad}-->" <!--4DIF ([Empleados]Ciudad_Residencia=ciudad{ciudad})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT ciudad{ciudad}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Teléfonos</label>
+                                                <input type="text" class="form-control" name="telefonos" required value="<!--4DTEXT [Empleados]Teléfonos-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Celular</label>
+                                                <input type="text" class="form-control" placeholder="" required name="celular" value="<!--4DTEXT [Empleados]Celular-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">E-mail</label>
+                                                <input type="email" class="form-control" placeholder="" required name="email" value="<!--4DTEXT [Empleados]e_mail_personal-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">EPS</label>                                                
+                                                <select name="EPS" id="EPS" class="form-control" required>
+                                                    <option value=""></option>
+                                                    <!--4DLOOP EPS-->
+                                                      <option value="<!--4DTEXT EPS{EPS}-->" <!--4DIF ([Empleados]EPS=EPS{EPS})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT EPS{EPS}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">ARP</label>                                                
+                                                <select name="ARP" id="ARP" class="form-control" required>
+                                                    <option value=""></option>
+                                                    <!--4DLOOP ARP-->
+                                                      <option value="<!--4DTEXT ARP{ARP}-->" <!--4DIF ([Empleados]ARP=ARP{ARP})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT ARP{ARP}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Fondo Pensiones</label>                                                
+                                                <select name="fondoPensiones" id="fondoPensiones" class="form-control" required>
+                                                    <option value=""></option>
+                                                    <!--4DLOOP fondoPensiones-->
+                                                      <option value="<!--4DTEXT fondoPensiones{fondoPensiones}-->" <!--4DIF ([Empleados]Fondo_Pensiones=fondoPensiones{fondoPensiones})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT fondoPensiones{fondoPensiones}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Datos Básicos -->
+                    </div>
+                
+                    <div class="row">
+                        <!-- Información de Empresa -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Información de Empresa</h6>
+                                    <!--<p style="color:red">*Anotaciones</p>-->
+                                </div>
+                                <div class="card-body pt-0">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Empresa</label>
+                                                <input type="text" class="form-control" name="empresa" required value="<!--4DTEXT [Empleados]Empresa-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Rep. Legal</label>
+                                                <input type="text" class="form-control" placeholder="" required name="repLegal" value="<!--4DTEXT [Empleados]Representante_Legal-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">C.C. </label>
+                                                <input type="text" class="form-control" placeholder="" required name="CC" value="<!--4DTEXT [Empleados]Cedula_Replegal-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Nit Empresa</label>
+                                                <input type="text" class="form-control" name="nitEmpresa" required value="<!--4DTEXT [Empleados]NIT_Empresa-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Cargo</label>
+                                                <input type="text" class="form-control" placeholder="" required name="cargo" value="<!--4DTEXT [Empleados]Cargo-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Profesión</label>
+                                                <input type="text" class="form-control" placeholder="" required name="Profesion" value="<!--4DTEXT [Empleados]Profesión-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group ">
+                                                <label class="control-label">Extensión Interna</label>
+                                                <input type="text" class="form-control" name="extInterna" required value="<!--4DTEXT [Empleados]Extensión_Interna-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Área</label>
+                                                <input type="text" class="form-control" placeholder="" required name="area" value="<!--4DTEXT [Empleados]Area_Departamento-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Supervisor</label>
+                                                <input type="text" class="form-control" placeholder="" required name="supervisor" value="<!--4DTEXT [Empleados]Supervisor-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>                                                                                                                           
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Dirección RUT</label>
+                                            <div>
+                                                <input type="text" class="form-control" name="direccionRut" required value="<!--4DTEXT [Empleados]Direccion_Rut-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Teléfono RUT</label>
+                                                <input type="text" class="form-control" placeholder="" required name="telefonoRut" value="<!--4DTEXT [Empleados]Telefono_Rut-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Información de Empresa -->
+                    </div>
+                    <div class="row">
+                        <!-- Actividades -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Actividades Según RUT</h6>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <br>                                   
+                                    <div class="form-group">
+                                        <div class="row">                                                                                    
+                                            <div class="row col-sm-4">
+                                                <label class="control-label col-sm-5">Principal</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="principal" class="form-control" name="actividadPrincipal" required
+                                                        value="<!--4DTEXT [Empleados]Codigo_ciiu_princ-->" autocomplete=off 
+                                                        onKeyPress="if(this.value.length==4) return false;">
+                                                </div>
+                                            </div>
+                                            <div class="row col-sm-8">
+                                                <label class="control-label col-sm-2">CIIU 1</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="ciiu1" class="form-control" name="ciiu1"
+                                                        value="<!--4DTEXT [Empleados]CIIU_Des-->" autocomplete=off readonly
+                                                        style="background-color: white;" tabindex="-1">
+                                                </div>
+                                            666</div>
+                                        </div>
+                                    </div>                                   
+                                    <div class="form-group">
+                                        <div class="row">                                                                                    
+                                            <div class="row col-sm-4">
+                                                <label class="control-label col-sm-5">Secundaria</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="secundaria" class="form-control" name="actividadSecundaria" 
+                                                        value="<!--4DTEXT [Empleados]Codigo_ciiu_sec-->" autocomplete=off 
+                                                        onKeyPress="if(this.value.length==4) return false;">
+                                                </div>
+                                            </div>
+                                            <div class="row col-sm-8">
+                                                <label class="control-label col-sm-2">CIIU 2</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="ciiu2" class="form-control" name="ciiu2"
+                                                        value="<!--4DTEXT [Empleados]CIIU_Des2-->" autocomplete=off readonly
+                                                        style="background-color: white;" tabindex="-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">                                                                                    
+                                            <div class="row col-sm-4">
+                                                <label class="control-label col-sm-5">Otra</label>
+                                                <div class="col-sm-7">
+                                                    <input type="number" id="actividadOtra" class="form-control" name="actividadOtra" 
+                                                        value="<!--4DTEXT [Empleados]Codigo_ciiu_otro-->" autocomplete=off 
+                                                        onKeyPress="if(this.value.length==4) return false;">
+                                                </div>
+                                            </div>
+                                            <div class="row col-sm-8">
+                                                <label class="control-label col-sm-2">CIIU 3</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="ciiu3" class="form-control" name="ciiu3"
+                                                        value="<!--4DTEXT [Empleados]CIIU_Des3-->" autocomplete=off readonly
+                                                        style="background-color: white;" tabindex="-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Actividades -->                                   
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Forma de Pago -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Forma de Pago</h6>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <br>
+                    
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <label class="control-label">Banco</label>
+                                            <div>                                                
+                                                <select name="banco" id="banco" class="form-control" required>
+                                                    <option value=""></option>
+                                                    <!--4DLOOP bancos-->
+                                                      <option value="<!--4DTEXT bancos{bancos}-->" <!--4DIF ([Empleados]Banco_Corporacion=bancos{bancos})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT bancos{bancos}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Cuenta</label>
+                                                <input type="text" class="form-control" required placeholder="" name="cuenta" value="<!--4DTEXT [Empleados]Cuenta_No-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Tipo de Cuenta</label>                                                
+                                                <select name="tipoCuenta" id="tipoCuenta" class="form-control" required>
+                                                    <option value=""></option>
+                                                    <!--4DLOOP tipoCuent-->
+                                                      <option value="<!--4DTEXT tipoCuent{tipoCuent}-->" <!--4DIF ([Empleados]Tipo_Cuenta=tipoCuent{tipoCuent})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT tipoCuent{tipoCuent}--></option>
+                                                    <!--4DENDLOOP-->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 form-group">
+                                            <label class="control-label">Cheque o Transferencia</label>                                            
+                                            <select name="chequeTransf" id="chequeTransf" class="form-control" required>
+                                                <option value=""></option>
+                                                <!--4DLOOP cheqTrans-->
+                                                  <option value="<!--4DTEXT cheqTrans{cheqTrans}-->" <!--4DIF ([Empleados]Cheque_Transf=cheqTrans{cheqTrans})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT cheqTrans{cheqTrans}--></option>
+                                                <!--4DENDLOOP-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fin Forma de Pago -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Archivos -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Archivos</h6>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <br>
+                                    <div class="row form-group ">
+                                        <label class="control-label col-sm-4">Cédula de Ciudadanía</label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"cedulaCiudadania")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="cedulaCiudadania" onchange="ValidateSingleInput(this);">
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"cedulaCiudadania")--></h5>
+                                                </div>                
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="cedulaCiudadania" onchange="ValidateSingleInput(this);">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-4">RUT</label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"rut")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="rut" onchange="ValidateSingleInput(this);">
+                                            
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"rut")--></h5>
+                                                </div>                
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="rut" onchange="ValidateSingleInput(this);">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-4">Certificado EPS</label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certEPS")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="certEPS" onchange="ValidateSingleInput(this);">
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"certEPS")--></h5>
+                                                </div>                
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="certEPS" onchange="ValidateSingleInput(this);">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-4">Certificado ARL</label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certARL")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="certARL" onchange="ValidateSingleInput(this);">
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"certARL")--></h5>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="certARL" onchange="ValidateSingleInput(this);">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-4">Fondo de Pensión</label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"fondoPension")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="fondoPension" onchange="ValidateSingleInput(this);">
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"fondoPension")--></h5>
+                                                </div>                
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="fondoPension" onchange="ValidateSingleInput(this);">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-4">Certificación Bancaria</label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certBancaria")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this);">
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"certBancaria")--></h5>
+                                                </div>                
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this);">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <!-- Fin Archivos -->
+                        </div>
+                    </div>                   
+                    
+                    <div class="row">
+                        <!-- Archivos -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <div class="card">
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Autorización</h6>
+                                </div>
+                                <div class="card-body pt-0" style="text-align: justify; font-style: italic">
+                                    <br>
+                                    <p>
+
+                                        Autorizo de forma previa, expresa, consciente, libre e informada a FOXTELECOLOMBIA S.A. (en adelante
+                                        "FTC"),
+                                        en calidad de responsable del tratamiento de mi información personal, sus filiales y/o subsidiarias,
+                                        o en las
+                                        entidades en las cuales ésta, directa o indirectamente, tengan participación accionaria o sean
+                                        asociados,
+                                        domiciliadas
+                                        en Colombia o en cualquier otro país[JILQ1] , para utilizar los datos personales suministrados en
+                                        este sitio
+                                        web de
+                                        acuerdo a las finalidades contempladas en la Política de Privacidad la cual puede consultar en
+                                        nuestra página
+                                        web:
+                                        <a target="_blank" rel="noopener noreferrer" href="https://foxtelecolombia.com/politica-privacidad/">https://foxtelecolombia.com/politica-privacidad/</a>.                                    </p>
+
+                                    <p>
+                                        Declaro que conozco los derechos que como titular de los mismos puedo ejercer, es decir, los
+                                        derechos de
+                                        acceso,
+                                        rectificación, prueba de autorización, oposición y supresión, en la forma establecida en la Política
+                                        de
+                                        Privacidad de FTC.
+                                    </p>
+
+                                    <p>
+                                        Declaro y garantizo bajo la gravedad de juramento que la información suministrada es veraz,
+                                        objetiva, completa
+                                        y
+                                        verificable, y en caso de falsedad se aplicaran las sanciones contempladas por la Ley y mantendré
+                                        indemne a
+                                        FTC por
+                                        cualquier daño o perjuicio derivado de la misma.
+                                    </p>
+                                    <div class="row" style="display:flex; justify-content: center">
+                                        <div class="custom-control custom-radio ">
+                                            <input type="radio" id="si" value="Si"  required name="autorizacion" class="custom-control-input" <!--4DIF ([Empleados]Autorizacion=True)-->checked<!--4DENDIF-->>
+                                            <label class="custom-control-label" for="si">Si</label>
+                                        </div>
+                                        <div style="margin: 10px"></div>
+                                        <div class="custom-control custom-radio ">
+                                            <input type="radio" id="no" value="No" name="autorizacion" class="custom-control-input"  <!--4DIF ([Empleados]Autorizacion=False)-->checked<!--4DENDIF-->>
+                                            <label class="custom-control-label" for="no">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin Archivos -->
+                    </div>
+                
+                    <div class="col-sm-12 col-lg-12">
+                        <button type="submit" class="btn btn-block btn-lg fox-dark center " id="submitButton" disabled style="max-width: 500px; ">Enviar</button>
+                    </div>
+                </div>
+            </form>
+          <br>
+            <!--4DINCLUDE footer.shtml-->
+        </main>
+      </div>
+    </div>
+    
+    <script src="persona_natural.js"></script>
+    <!--4DINCLUDE scripts.shtml-->
+  </body>
+</html>

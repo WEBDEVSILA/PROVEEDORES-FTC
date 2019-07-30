@@ -1,0 +1,55 @@
+$obWebVars:=WEB_Get_Vars 
+
+$user:=OB Get($obWebVars;"username")
+$pwd:=OB Get($obWebVars;"pwd")
+
+If ($user="") & ($pwd="")
+	estado:=True
+	errorTxt:="No se encontró ningún registro"
+	WEB SEND FILE("/")
+Else 
+	
+	QUERY([Solic_Proveedor];[Solic_Proveedor]CC=$user)
+	QUERY SELECTION([Solic_Proveedor];[Solic_Proveedor]Clave_Usuario=$pwd)
+	
+	If (Records in selection([Solic_Proveedor])=1)
+		
+		If ([Solic_Proveedor]Juridica_Natural=False)
+			
+			QUERY([Empleados];[Empleados]Cédula=[Solic_Proveedor]CC)
+			If (Records in selection([Empleados])=0)
+				CREATE RECORD([Empleados])
+				[Empleados]Cédula:=[Solic_Proveedor]CC
+				[Empleados]Teléfonos:=[Solic_Proveedor]Telefono
+				[Empleados]e_mail_personal:=[Solic_Proveedor]Email
+				SAVE RECORD([Empleados])
+			End if 
+			guardado:=False
+			WEB SEND FILE("persona-natural.shtml")
+			
+		Else 
+			If ([Solic_Proveedor]Juridica_Natural=True)
+				QUERY([Proveedor];[Proveedor]Nit=[Solic_Proveedor]CC)
+				If (Records in selection([Proveedor])=0)
+					CREATE RECORD([Proveedor])
+					[Proveedor]Nit:=[Solic_Proveedor]CC
+					[Proveedor]Telefono:=[Solic_Proveedor]Telefono
+					[Proveedor]E_mail:=[Solic_Proveedor]Email
+					SAVE RECORD([Proveedor])
+				End if 
+				guardado:=False
+				WEB SEND FILE("/persona-juridica.shtml")
+			Else 
+				estado:=True
+				errorTxt:="No se encontró ningún registro"
+				WEB SEND FILE("/")
+			End if 
+		End if 
+		
+	Else 
+		estado:=True
+		errorTxt:="No se encontró ningún registro"
+		WEB SEND FILE("/")
+	End if 
+	
+End if 

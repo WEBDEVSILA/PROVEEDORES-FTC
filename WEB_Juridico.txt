@@ -1,0 +1,125 @@
+$obWebVars:=WEB_Get_Vars 
+
+$id:=OB Get($obWebVars;"empleadoId")
+QUERY([Solic_Proveedor];[Solic_Proveedor]CC=$id)
+QUERY([Proveedor];[Proveedor]Nit=$id)
+guardado:=False
+
+[Proveedor]Nombre_Razon_Social:=OB Get($obWebVars;"razonSocial")
+[Proveedor]Especialidad:=OB Get($obWebVars;"especialidad")
+[Proveedor]Tipo_ID:=OB Get($obWebVars;"tipoID")
+  //[Proveedor]Nit:=OB Get($obWebVars;"identificacion")
+[Proveedor]DV:=OB Get($obWebVars;"dv")
+[Proveedor]Primer_Apellido:=OB Get($obWebVars;"primerApellido")
+[Proveedor]Segundo_Apellido:=OB Get($obWebVars;"segundoApellido")
+[Proveedor]Primer_Nombre:=OB Get($obWebVars;"primerNombre")
+[Proveedor]Segundo_Nombre:=OB Get($obWebVars;"segundoNombre")
+[Proveedor]Cedula_Rep_legal:=OB Get($obWebVars;"cedRepLegal")
+[Proveedor]Email_Rep_Legal:=OB Get($obWebVars;"emailRepLegal")
+[Proveedor]Contacto:=OB Get($obWebVars;"nombreContacto")
+[Proveedor]Cargo_Contac:=OB Get($obWebVars;"cargoContacto")
+[Proveedor]E_mail:=OB Get($obWebVars;"email1")
+[Proveedor]E_Mail2:=OB Get($obWebVars;"email2")
+[Proveedor]Indicativo:=OB Get($obWebVars;"ind")
+[Proveedor]Telefono:=OB Get($obWebVars;"telefono")
+[Proveedor]Ext:=OB Get($obWebVars;"extension")
+[Proveedor]Celular:=OB Get($obWebVars;"celular")
+[Proveedor]Direccion:=OB Get($obWebVars;"direccion")
+[Proveedor]Ciudad:=OB Get($obWebVars;"ciudad")
+[Proveedor]Pais:=OB Get($obWebVars;"estado")
+[Proveedor]Cod_Postal:=OB Get($obWebVars;"codigoPostal")
+[Proveedor]Url:=OB Get($obWebVars;"url")
+
+  //** INFORMACIÓN TRIBUTARIA **//
+If (OB Get($obWebVars;"autoretenedor")#"")
+	[Proveedor]Autoretenedor:=True
+Else 
+	[Proveedor]Autoretenedor:=False
+End if 
+
+If (OB Get($obWebVars;"granContrib")#"")
+	[Proveedor]Gran_Contribuyente:=True
+Else 
+	[Proveedor]Gran_Contribuyente:=False
+End if 
+
+If (OB Get($obWebVars;"entGub")#"")
+	[Proveedor]Ent_gubernamental:=True
+Else 
+	[Proveedor]Ent_gubernamental:=False
+End if 
+
+If (OB Get($obWebVars;"delExterior")#"")
+	[Proveedor]Proveedor_Exterior:=True
+Else 
+	[Proveedor]Proveedor_Exterior:=False
+End if 
+
+If (OB Get($obWebVars;"entSinAnim")#"")
+	[Proveedor]Ent_Sinanimo:=True
+Else 
+	[Proveedor]Ent_Sinanimo:=False
+End if 
+
+[Proveedor]Regimen_IVA:=OB Get($obWebVars;"regimen")
+[Proveedor]Tabla_RTEICA:=OB Get($obWebVars;"ica")
+[Proveedor]Rte_Fte_Usual:=OB Get($obWebVars;"fuente")
+[Proveedor]Direccion_Rut:=OB Get($obWebVars;"direccionRut")
+[Proveedor]Telefono_Rut:=OB Get($obWebVars;"telefonoRut")
+
+  //** ACTIVIDADES **//
+[Proveedor]Código_CIIU_Prin:=OB Get($obWebVars;"actividadPrincipal")
+[Proveedor]Codigo_CIIU_Sec:=OB Get($obWebVars;"actividadSecundaria")
+[Proveedor]Codigo_CIIU_Otro:=OB Get($obWebVars;"actividadOtra")
+[Proveedor]Ocupación:=OB Get($obWebVars;"ocupacion")
+[Proveedor]CIIU_Des:=OB Get($obWebVars;"ciiu1")
+[Proveedor]CIIU_Des2:=OB Get($obWebVars;"ciiu2")
+[Proveedor]CIIU_Des3:=OB Get($obWebVars;"ciiu3")
+
+  //** FORMA DE PAGO**//
+[Proveedor]Banco:=OB Get($obWebVars;"banco")
+[Proveedor]Cuenta_No:=OB Get($obWebVars;"cuenta")
+[Proveedor]Tipo_Cuenta:=OB Get($obWebVars;"tipoCuenta")
+[Proveedor]Cheque:=OB Get($obWebVars;"chequeTransf")
+
+  //** ARCHIVOS **//
+
+C_TEXT($vPartName;$vPartMimeType;$vPartFileName;$vDestinationFolder)
+C_BLOB($vPartContentBlob)
+C_LONGINT($i)
+C_OBJECT($obDoc)
+
+$vDestinationFolder:=Get 4D folder(Current resources folder)+"documentos_proveedores"+Folder separator+String($id)+Folder separator
+
+If (Test path name($vDestinationFolder)#Is a folder)
+	CREATE FOLDER($vDestinationFolder;*)
+End if 
+
+For ($i;1;WEB Get body part count)
+	WEB GET BODY PART($i;$vPartContentBlob;$vPartName;$vPartMimeType;$vPartFileName)
+	
+	If ($vPartFileName#"")
+		$rutaDoc:=$vDestinationFolder+$vPartFileName
+		BLOB TO DOCUMENT($rutaDoc;$vPartContentBlob)
+		OB SET([Proveedor]Ruta_Adjuntos;$vPartName;$rutaDoc)
+		OB SET([Proveedor]Nombre_Adjuntos;$vPartName;$vPartFileName)
+	End if 
+	
+End for 
+If (OB Get($obWebVars;"autorizacion")="Si")
+	[Proveedor]Autorizacion:=True
+Else 
+	[Proveedor]Autorizacion:=False
+End if 
+
+
+SAVE RECORD([Proveedor])
+guardado:=True
+
+QUERY([Solic_Proveedor];[Solic_Proveedor]CC=[Proveedor]Nit)
+
+If (OB Get($obWebVars;"enviar")="send")
+	WEB SEND FILE("envio.shtml")
+Else 
+	WEB SEND FILE("/persona-juridica.shtml")
+End if 

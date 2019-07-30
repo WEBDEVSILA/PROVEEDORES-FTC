@@ -1,0 +1,32 @@
+
+.logo{
+    max-width: 500px;
+    max-height: 400px;
+}
+
+.card{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.center{
+    display:block;
+    margin: auto;    
+}
+
+.fox-dark{
+    background-color: rgb(16, 77, 140);
+    color: white;
+}
+
+.fox-dark:hover{
+    background-color: rgb(12, 60, 107);
+    color: white;
+}
+
+.fox-light{
+    background-color: rgb(40, 147, 203);
+}
+
+.list-item{
+    color:rgb(12, 60, 107);
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>    
+    <p>
+    
+    <!--4DLOOP [CIIU]-->                            
+
+        <!--4DIF ([CIIU]Codigo_Letra # "")-->
+            
+            <p>codCiiu.set('<!--4DTEXT [CIIU]Codigo_Letra-->','<!--4DTEXT [CIIU]Descripcion-->');</p>
+        <!--4DELSE-->
+            <!--4DIF ([CIIU]Nivel1 # "")-->
+                <p>codCiiu.set('<!--4DTEXT [CIIU]Nivel1-->','<!--4DTEXT [CIIU]Descripcion-->');</p>                
+            <!--4DELSE-->
+                <!--4DIF ([CIIU]Nivel2 # "")-->
+                    <p>codCiiu.set('<!--4DTEXT [CIIU]Nivel2-->','<!--4DTEXT [CIIU]Descripcion-->');</p>                    
+                <!--4DELSE-->
+                    <p>codCiiu.set('<!--4DTEXT [CIIU]Codigo-->','<!--4DTEXT [CIIU]Descripcion-->');</p>                        
+                <!--4DENDIF-->
+            <!--4DENDIF-->
+        <!--4DENDIF-->
+    
+    <!--4DENDLOOP-->
+    
+    </p>
+</body>
+</html>

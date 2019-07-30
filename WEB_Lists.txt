@@ -1,0 +1,35 @@
+ARRAY TEXT(ciudad;100)
+LIST TO ARRAY("Ciudad";ciudad)
+
+ARRAY TEXT(tipoId;100)
+LIST TO ARRAY("Tipo_documento1";tipoId)
+
+ARRAY TEXT(cheqTrans;100)
+LIST TO ARRAY("Cheque Transferencia";cheqTrans)
+
+ARRAY TEXT(ARP;100)
+LIST TO ARRAY("ARP";ARP)
+
+ARRAY TEXT(EPS;100)
+LIST TO ARRAY("EPS";EPS)
+
+ARRAY TEXT(fondoCesantias;100)
+LIST TO ARRAY("FONDOS CESANTIAS";fondoCesantias)
+
+ARRAY TEXT(fondoPensiones;100)
+LIST TO ARRAY("FONDOS PENSIONES";fondoPensiones)
+
+ARRAY TEXT(estadoCivil;100)
+LIST TO ARRAY("Estado Civil";estadoCivil)
+
+ARRAY TEXT(ica;100)
+LIST TO ARRAY("Tabla Rte ICA";ica)
+
+ARRAY TEXT(fuente;100)
+LIST TO ARRAY("Tabla Rte ICA";fuente)
+
+ARRAY TEXT(tipoCuent;100)
+LIST TO ARRAY("Tipo_Cuenta";tipoCuent)
+
+ARRAY TEXT(bancos;100)
+LIST TO ARRAY("Bancos";bancos)

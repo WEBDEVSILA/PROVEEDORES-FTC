@@ -1,0 +1,20 @@
+	estado:=False
+	Case of 
+		: ($rqt="/")
+			WEB SEND FILE("index.shtml")
+		: ($rqt="formulario")
+			WEB_Formulario 
+			
+		: ($rqt="juridico")
+			WEB_Juridico 
+			
+		: ($rqt="natural")
+			WEB_Natural 
+			
+		: ($rqt="LogIn")
+			UNLOAD RECORD([Solic_Proveedor])
+			UNLOAD RECORD([Proveedor])
+			UNLOAD RECORD([Empleados])
+			WEB SEND FILE("/")
+			
+	End case

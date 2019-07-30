@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js h-100" lang="en">
+  <head>
+    <!--4DINCLUDE head.shtml-->
+  </head>
+  <body class="h-100">
+    
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Main Sidebar -->
+        <aside class="main-sidebar col-11 col-md-3 col-lg-2 px-0">
+         
+          <div class="main-navbar">
+            <img id="main-logo" style="max-height: 80px; display:block; margin: auto; margin-top: 20px;" src="Assets/logoTelecolombia.png" >                  
+            <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap  p-0">              
+              <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+            </nav>
+          </div>                
+          <div class="nav-wrapper">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <div class="nav-link" >
+                  <i class="material-icons" >person</i>
+                  <span ><!--4DTEXT [Solic_Proveedor]Nombre--></span>
+                </div>
+              </li>             
+              <li class="nav-item">
+                <form  method="post" id="form-logOut" enctype="multipart/form-data" action="/LogIn">
+                  <a class="nav-link text-danger" id="logOut" href="#">                    
+                      <i class="material-icons" style="color:rgba(255, 0, 0, 0.658)">logout</i>
+                      <span>Salir</span>                    
+                  </a>
+                </form>   
+              </li>             
+            </ul>
+          </div>
+        </aside>
+        <!-- End Main Sidebar -->
+        <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
+            <div class="main-navbar sticky-top bg-white">
+                <!-- Main Navbar -->
+                <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
+                <div class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">                               
+                </div>
+                <ul class="navbar-nav border-left flex-row ">                
+                    <li class="nav-item dropdown">
+                    <div class="nav-link text-nowrap px-3" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons" >person</i>
+                        <span><!--4DTEXT [Solic_Proveedor]Nombre--></span>
+                    </div>
+                    <div class="dropdown-menu dropdown-menu-small">                   
+                        <a class="dropdown-item" href="components-blog-posts.html">
+                        <i class="material-icons">save</i> Guardar</a>                  
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-danger" href="index.html">
+                        <i class="material-icons text-danger">&#xE879;</i> Salir </a>
+                    </div>
+                    </li>
+                </ul>
+                <nav class="nav">
+                    <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                    <i class="material-icons">&#xE5D2;</i>
+                    </a>
+                </nav>
+                </nav>
+            </div>
+            <!-- / .main-navbar -->
+          
+            <div class="main-content-container container-fluid px-4" style="display: flex; align-items: center">            
+                <input type="hidden" value="<!--4DTEXT [Solic_Proveedor]CC-->" name="empleadoId">                                     
+                <div class="row" style="display: flex;justify-content: center">
+                <!-- Datos Básicos-->
+                    <div class="col-lg-8 col-md-8 col-sm-12 mb-4">
+                        <div class="card">
+                            <div class="card-header border-bottom">
+                                <h3 class="page-title " style="text-align: center"><i class="material-icons" style="font-weight: bold">done</i>  Datos Enviados</h3> 
+                            </div>
+                            <div class="card-body pt-0">
+                                <p style="text-align: center">
+                                    Gracias por diligenciar completamente el formulario anterior. 
+                                    Su información fué enviada satisfactoriamente. 
+                                    A continuación recibirá un correo de confirmación y se comenzará el proceso de validación de los datos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="post" id="form-logOut" class="col-sm-12 col-lg-12" enctype="multipart/form-data" action="/LogIn">
+                        <div>              
+                            <button type="submit" class="btn btn-block btn-lg fox-dark center" style="max-width: 500px" >
+                                Salir
+                                <i class="material-icons">logout</i>
+                            </button>              
+                        </div>
+                    </form>
+                <!-- Fin Datos Básicos -->                                   
+                </div>                                                                                                                                                        
+            </div>                           
+        </main>
+      </div>
+    </div>    
+    <!--4DINCLUDE scripts.shtml-->
+  </body>
+</html>

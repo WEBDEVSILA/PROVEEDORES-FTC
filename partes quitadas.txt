@@ -1,0 +1,24 @@
+ <div class="row">
+    <div class="col-sm-6">
+        <div class="form-group ">
+        <label class="control-label">Rte Ica</label>                            
+        <select name="ica" id="ica" class="form-control" required>                                                            
+            <option value="" ></option>
+            <!--4DLOOP ica-->
+            <option value="<!--4DTEXT ica{ica}-->" <!--4DIF ([Proveedor]Tabla_RTEICA=ica{ica})-->selected > <!--4DELSE--> ><!--4DENDIF--> <!--4DTEXT ica{ica}--></option>
+            <!--4DENDLOOP-->
+        </select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group ">
+        <label class="control-label">Rte Fuente</label>                            
+        <select name="fuente" id="fuente" class="form-control" required>                                                            
+            <option value="" ></option>
+            <!--4DLOOP fuente-->
+            <option value="<!--4DTEXT fuente{fuente}-->" <!--4DIF ([Proveedor]Rte_Fte_Usual=fuente{fuente})-->selected > <!--4DELSE--> ><!--4DENDIF--> <!--4DTEXT fuente{fuente}--></option>
+            <!--4DENDLOOP-->
+        </select>
+        </div>
+    </div>
+</div>
