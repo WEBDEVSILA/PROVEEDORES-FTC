@@ -88,6 +88,7 @@ function validateEspecialidad(){
         document.getElementById("padreEsp").className = "col-sm-2";
     }else{
         document.getElementById("otra").style.display = "none";
+        document.getElementById("otra").value = "";
         document.getElementById("padreEsp").className = "col-sm-4";
     }
 }

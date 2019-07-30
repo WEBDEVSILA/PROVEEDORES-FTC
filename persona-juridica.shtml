@@ -134,7 +134,7 @@
                         <div class="col-sm-2" style="display:none" id="otra">
                             <div class="form-group ">
                                 <label class="control-label">¿Cuál?</label>
-                                <input type="text" class="form-control" id="otraEsp" name="otraEsp" required autocomplete=off>
+                                <input type="text" class="form-control" id="otraEsp" name="otraEsp" value="<!--4DTEXT [Proveedor]Otra_Especialidad-->" required autocomplete=off>
                             </div>  
                         </div>
                       </div>    
@@ -251,7 +251,7 @@
                         <div class="col-sm-2">
                             <div class="form-group ">
                                 <label class="control-label">Extensión</label>                                    
-                                <input type="text" class="form-control" name="extension" value="<!--4DTEXT [Proveedor]Ext-->" required autocomplete=off>                             
+                                <input type="text" class="form-control" name="extension" value="<!--4DTEXT [Proveedor]Ext-->" autocomplete=off>                             
                             </div>   
                         </div>
                         <div class="col-sm-4">
@@ -286,14 +286,19 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="control-label" >Estado</label>                                                
+                                <label class="control-label" >Estado - Departamento</label>                                                
                                 <input type="text" class="form-control" placeholder=""  name="estado" value="<!--4DTEXT [Proveedor]Pais-->" autocomplete=off >                                                
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group ">
-                                <label class="control-label">Código Postal</label>
-                                <input type="text" class="form-control" name="codigoPostal" value="<!--4DTEXT [Proveedor]Cod_Postal-->" autocomplete=off>                             
+                            <label class="control-label">Código Postal</label>
+                            <div class="input-group  ">
+                                <input type="text" class="form-control" name="codigoPostal" value="<!--4DTEXT [Proveedor]Cod_Postal-->" autocomplete=off
+                                  required >     
+                                  <div class="input-group-append">
+                                    <a class="btn btn-white" target="_blank" rel="noopener noreferrer" href="https://codigo-postal.co/colombia/">
+                                      <i class="material-icons" style="font-weight: bold">search</i></a>
+                                  </div>                          
                             </div>   
                         </div>                     
                       </div>    
