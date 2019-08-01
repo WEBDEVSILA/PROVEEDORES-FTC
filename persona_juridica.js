@@ -26,64 +26,40 @@ document.getElementById("logOut").addEventListener("click",function(){
     document.getElementById("form-logOut").submit();
 });
 
+document.getElementById("clear").addEventListener("click", function(){
+    document.getElementById("alerta").style.display="none";
+});
 
-principal.addEventListener("change",function(){    
-    if(principal.value != ""){
-        var description = codCiiu.get(principal.value.toString());
+function validateErase(element,ciiu){
+    if(element.value == ""){
+        document.getElementById(ciiu).value="";     
+    }
+}
+
+function validateArrowKey(e){
+    var n = (window.Event) ? e.which : e.keyCode;
+    if (n==38 || n==40){        
+        return false;
+    } 
+}
+
+function validateCIIU(element,ciiu){
+    if(element.value != ""){
+        var description = codCiiu.get(element.value.toString());
         console.log(description);
         if(description != undefined){
-            document.getElementById("ciiu1").value=description;
+            document.getElementById(ciiu).value=description;                        
         }else{
-            document.getElementById("ciiu1").value="";
+            document.getElementById(ciiu).value="";            
         }
     }else{
-        document.getElementById("ciiu1").value="";
+        document.getElementById(ciiu).value="";        
     }
     
-});
-
-secundaria.addEventListener("change",function(){    
-    if(secundaria.value!=""){
-        var description = codCiiu.get(secundaria.value.toString());
-        console.log(description);
-        if(description != undefined){
-            document.getElementById("ciiu2").value=description;
-        }else{
-            document.getElementById("ciiu2").value="";
-        }
-    }else{
-        document.getElementById("ciiu2").value="";
-    }
-});
-
-otra.addEventListener("change",function(){    
-    if(otra.value!=""){
-        var description = codCiiu.get(otra.value.toString());
-        console.log(description);
-        if(description != undefined){
-            document.getElementById("ciiu3").value=description;
-        }else{
-            document.getElementById("ciiu3").value="";
-        }
-    }else{
-        document.getElementById("ciiu3").value="";
-    }
-});
-
-authNo.addEventListener("click",function(){
-    validateAuth();
-});
-
-authSi.addEventListener("click",function(){
-    validateAuth();
-});
-
-especialidad.addEventListener("change",function(){
-    validateEspecialidad();
-});
+}
 
 function validateEspecialidad(){
-    if(especialidad.value=="Otra"){
+    if(especialidad.value=="Otros"){
         document.getElementById("otra").style.display = "block";
         document.getElementById("padreEsp").className = "col-sm-2";
     }else{
@@ -115,9 +91,8 @@ function calcularEdad(fecha) {
     return edad;
 }
 
-var _validFileExtensions = [".pdf"];    
-function ValidateSingleInput(oInput) {
-    
+function ValidateSingleInput(oInput,...files) {
+    var _validFileExtensions = files;        
     if (oInput.type == "file") {
         var sFileName = oInput.value;
          if (sFileName.length > 0) {
@@ -138,7 +113,7 @@ function ValidateSingleInput(oInput) {
         }
     }
     var fileSize = oInput.files[0].size/1000;
-    if(fileSize > 2000){
+    if(fileSize > 5000){
         alert("El archivo excede el peso máximo");
         oInput.value = "";
         return false;
@@ -146,12 +121,6 @@ function ValidateSingleInput(oInput) {
 
     return true;
 }
-
-
-
-document.getElementById("clear").addEventListener("click", function(){
-    document.getElementById("alerta").style.display="none";
-});
 
 function fill(){
 

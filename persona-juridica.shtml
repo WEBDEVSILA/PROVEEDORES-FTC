@@ -123,11 +123,19 @@
                         <div class="col-sm-4" id="padreEsp">
                             <div class="form-group">
                                 <label class="control-label" >Especialidad</label>                                                
-                                <select name="especialidad" class="form-control" id="especialidad" required>
-                                  <option value="<!--4DTEXT [Proveedor]Especialidad-->"><!--4DTEXT [Proveedor]Especialidad--></option>
-                                  <option value=""></option>    
-                                  <option value="Otra">Otra</option>    
-
+                                <select name="especialidad" class="form-control" id="especialidad" required onchange="validateEspecialidad()">
+                                  <option value="<!--4DTEXT [Proveedor]Especialidad-->"><!--4DTEXT [Proveedor]Especialidad--></option>                                  
+                                  <option value="Alquileres">Alquileres</option> 
+                                  <option value="Dotaciones">Dotaciones</option>
+                                  <option value="Equipos de Oficina">Equipos de Oficina</option>
+                                  <option value="Insumos de aseo y cafetería">Insumos de aseo y cafetería</option>
+                                  <option value="Insumos de Papelería ">Insumos de Papelería  </option>     
+                                  <option value="Mantenimientos">Mantenimientos</option>
+                                  <option value="Técnica">Técnica</option>
+                                  <option value="Tecnología">Tecnología</option>
+                                  <option value="Transporte">Transporte</option>
+                                  <option value="Servicios en general">Servicios en general</option>
+                                  <option value="Otros">Otros</option>                                   
                                 </select>
                             </div>
                         </div>
@@ -155,7 +163,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="control-label" >Identificación</label>                                                
-                                <input type="text" class="form-control" placeholder=""  name="identificacion" value="<!--4DTEXT [Proveedor]Nit-->" readonly >
+                                <input type="text" class="form-control" placeholder=""  name="identificacion" value="<!--4DTEXT [Proveedor]Nit-->" readonly style="background-color: white" >
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -275,13 +283,14 @@
                       <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group ">
-                                <label class="control-label">Ciudad</label>                                                                   
-                                <select name="ciudad" id="ciudad" class="form-control" required>
+                                <label class="control-label">Ciudad</label>      
+                                <input type="text" name="ciudad" id="ciudad" class="form-control" list="listaCiudad" required value="<!--4DTEXT [Proveedor]Ciudad-->">
+                                <datalist id="listaCiudad" >
                                   <option value=""></option>
                                   <!--4DLOOP ciudad-->
                                     <option value="<!--4DTEXT ciudad{ciudad}-->" <!--4DIF ([Proveedor]Ciudad=ciudad{ciudad})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT ciudad{ciudad}--></option>
                                   <!--4DENDLOOP-->
-                                </select>
+                                </datalist>
                             </div>   
                         </div>
                         <div class="col-sm-4">
@@ -400,7 +409,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                   <div class="card">
                     <div class="card-header border-bottom">
-                      <h6 class="m-0">Actividades</h6>
+                      <h6 class="m-0">Actividades Según RUT</h6>
                     </div>
                     <div class="card-body pt-0">
                       <br>
@@ -411,7 +420,9 @@
                                 <div class="col-sm-7">
                                     <input type="number" id="principal" class="form-control" name="actividadPrincipal" required
                                         value="<!--4DTEXT [Proveedor]Codigo_ciiu_prin-->" autocomplete=off 
-                                        onKeyPress="if(this.value.length==4) return false;">
+                                        onKeyPress="if(this.value.length==4) return false;" min=0 max=9999
+                                        onchange="validateCIIU(this,'ciiu1')" onkeyup="validateErase(this,'ciiu1')"
+                                        onkeydown="return validateArrowKey(event)">
                                 </div>
                             </div>
                             <div class="row col-sm-8">
@@ -431,7 +442,9 @@
                                 <div class="col-sm-7">
                                     <input type="number" id="secundaria" class="form-control" name="actividadSecundaria" 
                                         value="<!--4DTEXT [Proveedor]Codigo_ciiu_sec-->" autocomplete=off 
-                                        onKeyPress="if(this.value.length==4) return false;">
+                                        onKeyPress="if(this.value.length==4) return false;" min=0 max=9999
+                                        onchange="validateCIIU(this,'ciiu2')" onkeyup="validateErase(this,'ciiu2')"
+                                        onkeydown="return validateArrowKey(event)">
                                 </div>
                             </div>
                             <div class="row col-sm-8">
@@ -451,7 +464,9 @@
                                 <div class="col-sm-7">
                                     <input type="number" id="actividadOtra" class="form-control" name="actividadOtra" 
                                         value="<!--4DTEXT [Proveedor]Codigo_ciiu_otro-->" autocomplete=off 
-                                        onKeyPress="if(this.value.length==4) return false;">
+                                        onKeyPress="if(this.value.length==4) return false;" min=0 max=9999
+                                        onchange="validateCIIU(this,'ciiu3')" onkeyup="validateErase(this,'ciiu3')"
+                                        onkeydown="return validateArrowKey(event)">
                                 </div>
                             </div>
                             <div class="row col-sm-8">
@@ -497,7 +512,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" >Cuenta</label>
-                                <input type="text" class="form-control" placeholder=""  name="cuenta" value="<!--4DTEXT [Proveedor]Cuenta_No-->" required autocomplete=off> 
+                                <input type="number" class="form-control" placeholder=""  name="cuenta" value="<!--4DTEXT [Proveedor]Cuenta_No-->" required autocomplete=off min=0> 
                             </div>
                         </div>
                       </div>    
@@ -536,7 +551,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                     <div class="card">
                       <div class="card-header border-bottom">
-                          <h6 class="m-0">Archivos</h6>
+                          <h6 class="m-0">Archivos para Cargar</h6>
                       </div>
                       <div class="card-body pt-0">
                           <br>                       
@@ -544,13 +559,13 @@
                               <label class="control-label col-sm-4">RUT</label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"rut")="")-->
-                                    <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this);" required>
+                                    <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this,'.pdf');" required>
                                  <!--4DELSE-->                              
                                      <div class="col-md-4">
                                          <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"rut")--></h5>
                                      </div>                
                                      <div class="col-md-8">
-                                        <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this);">
+                                        <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this,'.pdf');">
                                      </div>                      
                                  <!--4DENDIF-->
                                 
@@ -561,13 +576,13 @@
                               <label class="control-label col-sm-4">Cédula Representante Legal</label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"cedulaRepLegal")="")-->                                 
-                                 <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this);" required>  
+                                 <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this,'.pdf','.jpg');" required>  
                                  <!--4DELSE-->                              
                                      <div class="col-md-4">
                                          <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"cedulaRepLegal")--></h5>
                                      </div>                
                                      <div class="col-md-8">
-                                        <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this);">  
+                                        <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this,'.pdf','.jpg');">  
                                      </div>                      
                                 <!--4DENDIF-->
                               </div>
@@ -577,29 +592,29 @@
                               <label class="control-label col-sm-4">Cámara de Comercio</label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"camaraComercio")="")-->                                                                  
-                                 <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this);" required>  
+                                 <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this,'.pdf');" required>  
                                  <!--4DELSE-->                              
                                      <div class="col-md-4">
                                          <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"camaraComercio")--></h5>
                                      </div>                
                                      <div class="col-md-8">                                        
-                                        <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this);">  
+                                        <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this,'.pdf');">  
                                      </div>                      
                                 <!--4DENDIF-->
                               </div>
                           </div>
-                          <br>                      
+                          <br>
                           <div class="row form-group">
                               <label class="control-label col-sm-4">Certificación Bancaria</label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"certBancaria")="")-->
-                                 <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this);" required>
+                                 <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');" required>
                                  <!--4DELSE-->                              
                                      <div class="col-md-4">
                                          <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"certBancaria")--></h5>
                                      </div>                
                                      <div class="col-md-8">                                        
-                                        <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this);">
+                                        <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');">
                                      </div>                      
                                 <!--4DENDIF-->
                               </div>
@@ -649,12 +664,12 @@
                           </p>
                           <div class="row" style="display:flex; justify-content: center">
                             <div class="custom-control custom-radio ">
-                                <input type="radio" id="si" name="autorizacion" value="Si" class="custom-control-input"  required <!--4DIF ([Proveedor]Autorizacion=True)-->checked<!--4DENDIF-->>
+                                <input type="radio" id="si" name="autorizacion" value="Si" class="custom-control-input" onclick="validateAuth()" required <!--4DIF ([Proveedor]Autorizacion=True)-->checked<!--4DENDIF-->>
                                 <label class="custom-control-label" for="si">Si</label>
                             </div>
                             <div style="margin: 10px"></div>
                             <div class="custom-control custom-radio ">
-                                <input type="radio" id="no" name="autorizacion" value="No" class="custom-control-input" <!--4DIF ([Proveedor]Autorizacion=False)-->checked<!--4DENDIF-->>
+                                <input type="radio" id="no" name="autorizacion" value="No" class="custom-control-input" onclick="validateAuth()" <!--4DIF ([Proveedor]Autorizacion=False)-->checked<!--4DENDIF-->>
                                 <label class="custom-control-label" for="no">No</label>
                             </div>
                         </div>

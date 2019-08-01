@@ -8,8 +8,10 @@ var otra = document.getElementById("actividadOtra");
 var codCiiu = new Map();
 var authSi = document.getElementById("si");
 var authNo = document.getElementById("no");
+var factSi = document.getElementById("factSi");
 fill();
 validateAuth();
+validateInfoEmpresa();
 
 
 document.getElementById("fechaNacim").addEventListener("change",function(){
@@ -34,57 +36,42 @@ document.getElementById("clear").addEventListener("click", function(){
     document.getElementById("alerta").style.display="none";
 });
 
-principal.addEventListener("change",function(){    
-    if(principal.value != ""){
-        var description = codCiiu.get(principal.value.toString());
+function validateInfoEmpresa(){
+    if(factSi.checked){
+        document.getElementById("infoEmpresa").style.display = "block";
+        document.getElementById("headEmpresa").style.borderBottomLeftRadius = "0px";
+        document.getElementById("headEmpresa").style.borderBottomRightRadius = "0px";
+    }else{
+        document.getElementById("infoEmpresa").style.display = "none";
+        document.getElementById("headEmpresa").style.borderBottomLeftRadius = "10px";
+        document.getElementById("headEmpresa").style.borderBottomRightRadius = "10px";
+    }
+}
+
+function validateCIIU(element,ciiu){
+    if(element.value != ""){
+        var description = codCiiu.get(element.value.toString());
         console.log(description);
         if(description != undefined){
-            document.getElementById("ciiu1").value=description;
+            document.getElementById(ciiu).value=description;            
         }else{
-            document.getElementById("ciiu1").value="";
+            document.getElementById(ciiu).value="";            
         }
     }else{
-        document.getElementById("ciiu1").value="";
+        document.getElementById(ciiu).value="";        
+    }    
+}
+function validateErase(element,ciiu){
+    if(element.value == ""){
+        document.getElementById(ciiu).value="";     
     }
-    
-});
-
-secundaria.addEventListener("change",function(){    
-    if(secundaria.value!=""){
-        var description = codCiiu.get(secundaria.value.toString());
-        console.log(description);
-        if(description != undefined){
-            document.getElementById("ciiu2").value=description;
-        }else{
-            document.getElementById("ciiu2").value="";
-        }
-    }else{
-        document.getElementById("ciiu2").value="";
-    }
-});
-
-otra.addEventListener("change",function(){    
-    if(otra.value!=""){
-        var description = codCiiu.get(otra.value.toString());
-        console.log(description);
-        if(description != undefined){
-            document.getElementById("ciiu3").value=description;
-        }else{
-            document.getElementById("ciiu3").value="";
-        }
-    }else{
-        document.getElementById("ciiu3").value="";
-    }
-});
-
-authNo.addEventListener("click",function(){
-    validateAuth();
-});
-
-authSi.addEventListener("click",function(){
-    validateAuth();
-});
-
+}
+function validateArrowKey(e){
+    var n = (window.Event) ? e.which : e.keyCode;
+    if (n==38 || n==40){        
+        return false;
+    } 
+}  
 function validateAuth(){
     if(authSi.checked){
         document.getElementById("submitButton").disabled=false;
@@ -107,9 +94,8 @@ function calcularEdad(fecha) {
     return edad;
 }
 
-
-var _validFileExtensions = [".pdf"];    
-function ValidateSingleInput(oInput) {
+function ValidateSingleInput(oInput,...files) {
+    var _validFileExtensions = files;  
     
     if (oInput.type == "file") {
         var sFileName = oInput.value;
@@ -131,7 +117,7 @@ function ValidateSingleInput(oInput) {
         }
     }
     var fileSize = oInput.files[0].size/1000;
-    if(fileSize > 2000){
+    if(fileSize > 5000){
         alert("El archivo excede el peso máximo");
         oInput.value = "";
         return false;

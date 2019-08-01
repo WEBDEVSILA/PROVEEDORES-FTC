@@ -30,3 +30,11 @@
 .list-item{
     color:rgb(12, 60, 107);
 }
+
+.subtitle{
+    color: black;
+    font-size: 13px;
+    margin: 0px;
+    padding: 0px;
+    
+}
