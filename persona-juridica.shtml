@@ -4,7 +4,9 @@
     <!--4DINCLUDE head.shtml-->
   </head>
   <body class="h-100">
-    
+
+   <!--4DINCLUDE modal.shtml-->
+
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
@@ -26,15 +28,15 @@
                   <span ><!--4DTEXT [Solic_Proveedor]Nombre--></span>
                 </div>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" style="display:<!--4DIF  ([Solic_Proveedor]Estado="") | ([Solic_Proveedor]Estado="Rechazado")-->block<!--4DELSE-->none<!--4DENDIF-->">
                 <a class="nav-link " id="save" href="#">
                   <i class="material-icons">save</i>
                   <span>Guardar</span>
                 </a>
-              </li>
+              </li>              
               <li class="nav-item">
                 <form  method="post" id="form-logOut" enctype="multipart/form-data" action="/LogIn">
-                  <a class="nav-link text-danger" id="logOut" href="#">                    
+                  <a class="nav-link text-danger" href="#" id="myBtn" data-toggle="modal" data-target="#exampleModal">                    
                       <i class="material-icons" style="color:rgba(255, 0, 0, 0.658)">logout</i>
                       <span>Salir</span>                    
                   </a>
@@ -60,15 +62,15 @@
                     <a class="dropdown-item" href="components-blog-posts.html">
                       <i class="material-icons">save</i> Guardar</a>                  
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="index.html">
+                    <a class="dropdown-item text-danger" href="#"  data-toggle="modal" data-target="#exampleModal">
                       <i class="material-icons text-danger">&#xE879;</i> Salir </a>
                   </div>
                 </li>
               </ul>
               <nav class="nav">
-                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
+                <!--<a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
                   <i class="material-icons">&#xE5D2;</i>
-                </a>
+                </a>-->
               </nav>
             </nav>
           </div>
@@ -81,11 +83,52 @@
                   <h3 class="page-title">Proveedores Persona Jurídica</h3>                                                  
                 </div>
               </div>
-              <!-- End Page Header -->
+              <!-- End Page Header -->            
+
               <input type="hidden" value="<!--4DTEXT [Solic_Proveedor]CC-->" name="empleadoId">
               <input type="hidden" value="send" name="enviar" id="enviar">
              
-              <div class="alert alert-success card" style="border-radius: 10px; <!--4DIF (guardado=True)--> <!--4DELSE-->display: none <!--#4DENDIF-->" id="alerta"> 
+               <!--4DIF ([Solic_Proveedor]Estado="Inscripcion") | ([Solic_Proveedor]Estado="Pendiente") | ([Solic_Proveedor]Estado="Validado")-->
+              <div class="alert fox-alert card" style="border-radius: 10px;">
+                <div class="row">
+                    <div class="col-sm-10 col-md-11">
+                        <div class="col-sm-6" style="font-weight: bold">
+                            Sus datos estan en proceso de aprobación
+                        </div>                                
+                    </div>                          
+                </div>
+              </div>
+              <!--4DENDIF-->
+              <!--4DIF ([Solic_Proveedor]Estado="Aprobado")-->                    
+              <div class="alert alert-success card" style="border-radius: 10px; ">
+                  <div class="row">
+                      <div class="col-sm-10 col-md-11">
+                          <div class="col-sm-6" style="font-weight: bold">
+                              <i class="material-icons" style="font-weight: bold">check</i>    
+                              Sus datos han sido aprobados satisfactoriamente.
+                          </div>                                
+                      </div>                          
+                  </div>
+              </div>                    
+              <!--4DENDIF-->
+
+              <!--4DIF ([Solic_Proveedor]Estado="Rechazado")-->                    
+              <div class="alert alert-danger card" style="border-radius: 10px; ">
+                  <div class="row">
+                      <div class="col-sm-10 col-md-11">
+                          <div class="col-sm-6" style="font-weight: bold">
+                              <i class="material-icons" style="font-weight: bold">error_outline</i>   
+                              Sus datos han sido rechazados.
+                          </div>       
+                          <div class="col-sm-12" style="font-style: italic;">
+                                  * Por favor revise sus datos y vuelva a enviar el formulario.
+                          </div>                         
+                      </div>                          
+                  </div>
+              </div>                    
+              <!--4DENDIF-->
+
+              <div class="alert fox-alert card" style="border-radius: 10px; <!--4DIF (guardado=True)--> <!--4DELSE-->display: none <!--#4DENDIF-->" id="alerta"> 
                 <div class="row">
                   <div class="col-sm-10 col-md-11">
                     <div class="col-sm-6" style="font-weight: bold">
@@ -96,7 +139,7 @@
                     </div>
                   </div>
                   <div class="col-sm-2 col-md-1" style="display: flex; align-items: center"> 
-                    <button type="button" class="btn btn-success" id="clear" >
+                    <button type="button" class="btn fox-alert" id="clear" >
                       <i class="material-icons" style="font-weight: bold">clear</i>
                     </button>  
                   </div>
@@ -117,7 +160,7 @@
                         <div class="col-sm-8">
                             <div class="form-group ">
                                 <label class="control-label">Razón Social - Nombre</label>
-                                <input type="text" class="form-control" id="razonSocial" name="razonSocial" required value="<!--4DTEXT [Proveedor]Nombre_Razon_Social-->" required autocomplete=off>
+                                <input type="text" class="form-control" id="razonSocial" onkeyup="upperCase(this)" name="razonSocial" required value="<!--4DTEXT [Proveedor]Nombre_Razon_Social-->" required autocomplete=off>
                             </div>   
                         </div>
                         <div class="col-sm-4" id="padreEsp">
@@ -142,7 +185,7 @@
                         <div class="col-sm-2" style="display:none" id="otra">
                             <div class="form-group ">
                                 <label class="control-label">¿Cuál?</label>
-                                <input type="text" class="form-control" id="otraEsp" name="otraEsp" value="<!--4DTEXT [Proveedor]Otra_Especialidad-->" required autocomplete=off>
+                                <input type="text" class="form-control" id="otraEsp" name="otraEsp" value="<!--4DTEXT [Proveedor]Otra_Especialidad-->"  autocomplete=off>
                             </div>  
                         </div>
                       </div>    
@@ -150,12 +193,16 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="control-label" >Tipo Identificación</label>                                                
-                                <select name="tipoID" class="form-control" id="tipoID" required>
-                                
+                                <select name="tipoID" class="form-control" id="tipoID" required>                                
                                   <option value="<!--4DTEXT [Proveedor]Tipo_ID-->"><!--4DTEXT [Proveedor]Tipo_ID--></option>
-                                  <!--4DLOOP tipoId-->
-                                    <option value="<!--4DTEXT tipoId{tipoId}-->" <!--4DIF ([Proveedor]Tipo_ID=tipoId{tipoId})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT tipoId{tipoId}--></option>
-                                  <!--4DENDLOOP-->
+                                  <option value="CC  Cédula de Ciudadanía">CC  Cédula de Ciudadanía</option>
+                                  <option value="CE  Cédula de Extranjería">CE  Cédula de Extranjería</option>
+                                  <option value="NIT Nit">NIT Nit</option>
+                                  <option value="PAS Pasaporte">PAS Pasaporte</option>
+                                  <option value="RUT Registro Unico Tributario">RUT Registro Unico Tributario</option>
+                                  <option value="TID Tarjeta de Identidad">TID Tarjeta de Identidad</option>
+                                  <option value="AS  Asignado">AS  Asignado</option>
+                                  <option value="IE Identificacion Extranjeria">IE Identificacion Extranjeria</option>
                                 </select>   
                                                              
                             </div>
@@ -177,25 +224,25 @@
                         <div class="col-sm-3">
                             <div class="form-group ">
                                 <label class="control-label">Primer Apellido Representante Legal</label>                                    
-                                <input type="text" class="form-control" name="primerApellido" value="<!--4DTEXT [Proveedor]Primer_Apellido-->" required autocomplete=off>                             
+                                <input type="text" class="form-control" name="primerApellido" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Primer_Apellido-->" required autocomplete=off>                             
                             </div>   
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="control-label" >Segundo Apellido Representante Legal</label>                                                
-                                <input type="text" class="form-control" placeholder=""  name="segundoApellido" value="<!--4DTEXT [Proveedor]Segundo_Apellido-->"  required autocomplete=off>                                                
+                                <input type="text" class="form-control" placeholder=""  name="segundoApellido" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Segundo_Apellido-->"  required autocomplete=off>                                                
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group ">
                                 <label class="control-label">Primer Nombre Representante Legal</label>                                    
-                                <input type="text" class="form-control" name="primerNombre" value="<!--4DTEXT [Proveedor]Primer_Nombre-->" required autocomplete=off>
+                                <input type="text" class="form-control" name="primerNombre" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Primer_Nombre-->" required autocomplete=off>
                             </div>   
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label class="control-label" >Segundo Nombre Representante Legal</label>                                                
-                                <input type="text" class="form-control" placeholder=""  name="segundoNombre" value="<!--4DTEXT [Proveedor]Segundo_Nombre-->" autocomplete=off>
+                                <input type="text" class="form-control" placeholder=""  onkeyup="upperCase(this)" name="segundoNombre" value="<!--4DTEXT [Proveedor]Segundo_Nombre-->" autocomplete=off>
                             </div>
                         </div>
                       </div>                          
@@ -217,13 +264,13 @@
                         <div class="col-sm-6">
                             <div class="form-group ">
                                 <label class="control-label">Nombre del Contacto Comercial</label>                                    
-                                <input type="text" class="form-control" name="nombreContacto" value="<!--4DTEXT [Proveedor]Contacto-->" required autocomplete=off>                             
+                                <input type="text" class="form-control" name="nombreContacto" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Contacto-->" required autocomplete=off>                             
                             </div>   
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" >Cargo del Contacto</label>                                                
-                                <input type="text" class="form-control" placeholder=""  name="cargoContacto" value="<!--4DTEXT [Proveedor]Cargo_Contac-->" required autocomplete=off>                                                
+                                <input type="text" class="form-control" placeholder=""  onkeyup="upperCase(this)" name="cargoContacto" value="<!--4DTEXT [Proveedor]Cargo_Contac-->" required autocomplete=off>                                                
                             </div>
                         </div>
                       </div> 
@@ -316,7 +363,11 @@
                         <div class="col-sm-12">
                             <div class="form-group ">
                                 <label class="control-label">Url Página Web</label>
-                                <input type="url" class="form-control" name="url" value="<!--4DTEXT [Proveedor]Url-->" autocomplete=off>                             
+                                <!--4DIF ([Proveedor]Url = ""-->
+                                <input type="url" class="form-control" name="url" value="http://" autocomplete=off>
+                                <!--4DELSE-->
+                                <input type="url" class="form-control" name="url" value="<!--4DTEXT [Proveedor]Url-->" autocomplete=off>
+                                <!--4DENDIF-->
                             </div>   
                         </div>     
                       </div>
@@ -523,9 +574,9 @@
                                 
                                 <select name="tipoCuenta" id="tipoCuenta" class="form-control" required>
                                   <option value=""></option>
-                                  <!--4DLOOP tipoCuent-->
-                                    <option value="<!--4DTEXT tipoCuent{tipoCuent}-->" <!--4DIF ([Proveedor]Tipo_Cuenta=tipoCuent{tipoCuent})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT tipoCuent{tipoCuent}--></option>
-                                  <!--4DENDLOOP-->
+                                  <option value="Ahorros" <!--4DIF ([Proveedor]Tipo_Cuenta = "Ahorros")-->selected<!--4DENDIF-->>Ahorros</option>
+                                  <option value="Corriente" <!--4DIF ([Proveedor]Tipo_Cuenta = "Corriente")-->selected<!--4DENDIF-->>Corriente</option>
+                                  <option value="Crédito Rotativo" <!--4DIF ([Proveedor]Tipo_Cuenta = "Crédito Rotativo")-->selected<!--4DENDIF-->>Crédito Rotativo</option>
                                 </select>
                             </div>
                         </div>                      
@@ -533,9 +584,9 @@
                           <label class="control-label">Cheque o Transferencia</label>                          
                           <select name="chequeTransf" id="chequeTransf" class="form-control" required>
                             <option value=""></option>
-                            <!--4DLOOP cheqTrans-->
-                              <option value="<!--4DTEXT cheqTrans{cheqTrans}-->" <!--4DIF ([Proveedor]Cheque=cheqTrans{cheqTrans})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT cheqTrans{cheqTrans}--></option>
-                            <!--4DENDLOOP-->
+                            <option value="CHEQUE" <!--4DIF ([Proveedor]Cheque = "CHEQUE")-->selected<!--4DENDIF-->>CHEQUE</option>
+                            <option value="TRANSFERENCIA" <!--4DIF ([Proveedor]Cheque = "TRANSFERENCIA")-->selected<!--4DENDIF-->>TRANSFERENCIA</option>
+                            <option value="WIRE TRANSFER" <!--4DIF ([Proveedor]Cheque = "WIRE TRANSFER")-->selected<!--4DENDIF-->>WIRE TRANSFER</option>
                           </select>
                         </div>                       
                       </div>
@@ -668,7 +719,7 @@
                                 <label class="custom-control-label" for="si">Si</label>
                             </div>
                             <div style="margin: 10px"></div>
-                            <div class="custom-control custom-radio ">
+                            <div class="custom-control custom-radio " style="display:<!--4DIF ([Solic_Proveedor]Estado="Inscripcion")-->none<!--4DELSE-->block<!--4DENDIF-->">
                                 <input type="radio" id="no" name="autorizacion" value="No" class="custom-control-input" onclick="validateAuth()" <!--4DIF ([Proveedor]Autorizacion=False)-->checked<!--4DENDIF-->>
                                 <label class="custom-control-label" for="no">No</label>
                             </div>
@@ -679,18 +730,21 @@
                 <!-- Fin Autorización -->                                   
               </div>
                                                                  
-              <div class="col-sm-12 col-lg-12" >              
+              <div class="col-sm-12 col-lg-12" style="display:<!--4DIF  ([Solic_Proveedor]Estado="") | ([Solic_Proveedor]Estado="Rechazado")-->block<!--4DELSE-->none<!--4DENDIF-->">
                 <button type="submit" class="btn btn-block btn-lg fox-dark center" id="submitButton" disabled style="max-width: 500px" >Enviar</button>              
               </div>
 
             </div>
           </form>
-          <br>
+          <br>         
           <!--4DINCLUDE footer.shtml-->
         </main>
       </div>
     </div>
+           
+             
     <script src="./persona_juridica.js"></script>
+    
     <!--4DINCLUDE scripts.shtml-->
   </body>
 </html>

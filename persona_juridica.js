@@ -11,7 +11,7 @@ var especialidad = document.getElementById("especialidad");
 fill();
 validateAuth();
 validateEspecialidad();
-
+upperCase(document.getElementById("razonSocial"));
 
 document.getElementById("save").addEventListener("click",function(){
     console.log("Save");
@@ -34,6 +34,10 @@ function validateErase(element,ciiu){
     if(element.value == ""){
         document.getElementById(ciiu).value="";     
     }
+}
+
+function upperCase(element){    
+    element.value = element.value.toString().toUpperCase();
 }
 
 function validateArrowKey(e){

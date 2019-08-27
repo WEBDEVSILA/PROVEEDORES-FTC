@@ -36,6 +36,11 @@ document.getElementById("clear").addEventListener("click", function(){
     document.getElementById("alerta").style.display="none";
 });
 
+
+function upperCase(element){    
+    element.value = element.value.toString().toUpperCase();
+}
+
 function validateInfoEmpresa(){
     if(factSi.checked){
         document.getElementById("infoEmpresa").style.display = "block";

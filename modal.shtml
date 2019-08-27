@@ -1,0 +1,14 @@
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-body">
+            <h4 style="text-align: center" class="ajg-title-dark">¿Esta seguro que desea salir?</h4>
+            <p  style="text-align: center">Es posible que no se guarden todos los cambios realizados. </p>
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: center;">
+            <button type="button" style="width:100px;" id="logOut" class="btn btn-primary fox-dark">Si</button>
+            <button type="button" style="width:100px;" id="stay" class="btn" data-dismiss="modal">No</button>
+        </div>
+    </div>    
+</div>
