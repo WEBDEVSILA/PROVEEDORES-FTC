@@ -9,12 +9,12 @@ btn.onclick = function() {
     modal.style.display = "block";
 }
 
-document.getElementById("save").addEventListener("click",function(){
+/*document.getElementById("save").addEventListener("click",function(){
     console.log("Save");
     document.getElementById("enviar").value="save";
     document.getElementsByClassName("form-control").required=false;
     form.submit();
-});
+});*/
 
 document.getElementById("logOut").addEventListener("click",function(){
     console.log("Log Out");

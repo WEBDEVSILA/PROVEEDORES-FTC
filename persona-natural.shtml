@@ -230,7 +230,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group ">
                                                 <label class="control-label">Lugar Nacimiento</label>
-                                                <input type="text" class="form-control" name="lugarNacimiento" required value="<!--4DTEXT [Empleados]Lugar_nacimiento-->" autocomplete=off>
+                                                <input type="text" class="form-control" name="lugarNacimiento" onkeyup="upperCase(this)" required value="<!--4DTEXT [Empleados]Lugar_nacimiento-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -263,7 +263,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group ">
                                                 <label class="control-label">Nacionalidad</label>
-                                                <input type="text" class="form-control" name="nacionalidad" required value="<!--4DTEXT [Empleados]Nacionalidad-->" autocomplete=off>
+                                                <input type="text" class="form-control" name="nacionalidad" onkeyup="upperCase(this)" required value="<!--4DTEXT [Empleados]Nacionalidad-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -350,10 +350,14 @@
                                                 <label class="control-label">Fondo Pensiones</label>                                                
                                                 <select name="fondoPensiones" id="fondoPensiones" class="form-control" required>
                                                     <option value=""></option>                                  
-                                                    <option value="CAFAM" <!--4DIF ([Empleados]Fondo_Pensiones="CAFAM")-->selected <!--4DENDIF-->>CAFAM</option>
-                                                    <option value="COLSUBSIDIO" <!--4DIF ([Empleados]Fondo_Pensiones="COLSUBSIDIO")-->selected <!--4DENDIF-->>COLSUBSIDIO</option>
-                                                    <option value="COMPENSAR" <!--4DIF ([Empleados]Fondo_Pensiones="COMPENSAR")-->selected <!--4DENDIF-->>COMPENSAR</option>
-                                                    <option value="NO APLICA" <!--4DIF ([Empleados]Fondo_Pensiones="NO APLICA")-->selected <!--4DENDIF-->>NO APLICA</option>
+                                                    <option value="COLPENSIONES" <!--4DIF ([Empleados]Fondo_Pensiones="COLPENSIONES")-->selected <!--4DENDIF-->>COLPENSIONES</option>
+                                                    <option value="HORIZONTE" <!--4DIF ([Empleados]Fondo_Pensiones="HORIZONTE")-->selected <!--4DENDIF-->>HORIZONTE</option>
+                                                    <option value="PORVENIR" <!--4DIF ([Empleados]Fondo_Pensiones="PORVENIR")-->selected <!--4DENDIF-->>PORVENIR</option>
+                                                    <option value="COLFONDOS" <!--4DIF ([Empleados]Fondo_Pensiones="COLFONDOS")-->selected <!--4DENDIF-->>COLFONDOS</option>
+                                                    <option value="PROTECCIÓN" <!--4DIF ([Empleados]Fondo_Pensiones="PROTECCIÓN")-->selected <!--4DENDIF-->>PROTECCIÓN</option>
+                                                    <option value="POSITIVA" <!--4DIF ([Empleados]Fondo_Pensiones="POSITIVA")-->selected <!--4DENDIF-->>POSITIVA</option>
+                                                    <option value="ESKANDIA" <!--4DIF ([Empleados]Fondo_Pensiones="ESKANDIA")-->selected <!--4DENDIF-->>ESKANDIA</option>
+                                                    <option value="NO APLICA" <!--4DIF ([Empleados]Fondo_Pensiones="NO APLICA")-->selected <!--4DENDIF-->>NO APLICA</option>                                                    
                                                 </select>
                                             </div>
                                         </div>

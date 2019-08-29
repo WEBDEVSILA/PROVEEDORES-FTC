@@ -26,12 +26,12 @@
                   <span ><!--4DTEXT [Solic_Proveedor]Nombre--></span>
                 </div>
               </li>
-              <li class="nav-item">
+              <!--<li class="nav-item">
                 <a class="nav-link " id="save" href="#">
                   <i class="material-icons">save</i>
                   <span>Guardar</span>
                 </a>
-              </li>
+              </li>-->
               <li class="nav-item">
                 <form  method="post" id="form-logOut" enctype="multipart/form-data" action="/LogIn">
                     <a class="nav-link text-danger" id="myBtn" href="#">                      
