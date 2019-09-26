@@ -9,6 +9,13 @@ var codCiiu = new Map();
 var authSi = document.getElementById("si");
 var authNo = document.getElementById("no");
 var factSi = document.getElementById("factSi");
+var primerNombre = document.getElementById("primerNombre");
+var segundoNombre = document.getElementById("segundoNombre");
+var primerApellido = document.getElementById("primerApellido");
+var nit = document.getElementById("nit");
+var idTitular = document.getElementById("idTitular");
+var titular = document.getElementById("titular");
+
 fill();
 validateAuth();
 validateInfoEmpresa();
@@ -36,6 +43,14 @@ document.getElementById("clear").addEventListener("click", function(){
     document.getElementById("alerta").style.display="none";
 });
 
+
+function concatName(){
+    if(segundoNombre.value == "N/A"){
+        segundoNombre.value = "";
+    }
+    titular.value = primerNombre.value + " " +segundoNombre.value + " " + primerApellido.value;
+    
+}
 
 function upperCase(element){    
     element.value = element.value.toString().toUpperCase();

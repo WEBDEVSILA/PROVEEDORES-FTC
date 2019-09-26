@@ -40,15 +40,16 @@
 }
 
 .subtitle{
-    color: black;
-    font-size: 13px;
+    color: rgba(12, 60, 107, 0.747);
+    font-size: 12px;    
     margin: 0px;
     padding: 0px;
     
 }
 
-
-
+.under-line{
+  text-decoration: underline;
+}
 
 .modal {
     display: none; /* Hidden by default */

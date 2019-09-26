@@ -150,15 +150,32 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                             <div class="card">
                                 <div class="card-header border-bottom">
-                                    <h6 class="m-0">Información de Identificación y Ubicación</h6>
+                                    <h6 class="m-0">Información de Identificación y Ubicación</h6>                                    
                                 </div>
                                 <div class="card-body pt-0">
                                     <br>
+                                    <p style="font-weight: normal; color: rgba(12, 60, 107, 0.747);">* Recuerde llenar los campos en su totalidad para el correcto envío del formulario. En caso que algún campo no aplique para usted escriba N/A. </p>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label">Primer Nombre</label>
+                                                <input type="text" class="form-control" name="primerNombre" id="primerNombre" onchange="concatName()" onkeyup="upperCase(this)" required value="<!--4DTEXT [Empleados]P_Nombre-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Segundo Nombre </label>
+                                                <input type="text" class="form-control" placeholder="" id="segundoNombre" onchange="concatName()" onkeyup="upperCase(this)" name="segundoNombre" value="<!--4DTEXT [Empleados]S_nombre-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="row form-group">
                                         <div class="col-sm-6">
                                             <div class="form-group ">
                                                 <label class="control-label">Primer Apellido</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" name="primerApellido" required value="<!--4DTEXT [Empleados]P_Apellido-->" autocomplete=off>
+                                                <input type="text" class="form-control" id="primerApellido" onkeyup="upperCase(this)" name="primerApellido" required value="<!--4DTEXT [Empleados]P_Apellido-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -168,22 +185,7 @@
                                             </div>
                                         </div>
                                     </div>
-                
-                                    <div class="row form-group">
-                                        <div class="col-sm-6">
-                                            <div class="form-group ">
-                                                <label class="control-label">Primer Nombre</label>
-                                                <input type="text" class="form-control" name="primerNombre" onkeyup="upperCase(this)" required value="<!--4DTEXT [Empleados]P_Nombre-->" autocomplete=off>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Segundo Nombre</label>
-                                                <input type="text" class="form-control" placeholder="" onkeyup="upperCase(this)" name="segundoNombre" value="<!--4DTEXT [Empleados]S_nombre-->" autocomplete=off>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                                  
                                     <div class="row form-group">
                                         <div class="col-sm-6">
                                             <div class="form-group ">
@@ -204,7 +206,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label class="control-label">Número Identificación</label>
-                                                <input type="text" class="form-control" placeholder="" required name="numeroID" value="<!--4DTEXT [Empleados]Cédula-->" readonly autocomplete=off>
+                                                <input type="text" class="form-control" placeholder="" id="nit" required name="numeroID" value="<!--4DTEXT [Empleados]Cédula-->" readonly autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -337,11 +339,25 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">ARP</label>                                                
-                                                <select name="ARP" id="ARP" class="form-control" required>
-                                                    <option value=""></option>
-                                                    <!--4DLOOP ARP-->
-                                                      <option value="<!--4DTEXT ARP{ARP}-->" <!--4DIF ([Empleados]ARP=ARP{ARP})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT ARP{ARP}--></option>
-                                                    <!--4DENDLOOP-->
+                                                <select name="ARP" id="ARP" class="form-control" required                                                    
+                                                    <!--4DIF (Size of array(ARP) #0)-->
+                                                        <!--4DLOOP ARP-->
+                                                            <option value="<!--4DTEXT ARP{ARP}-->" <!--4DIF ([Empleados]ARP=ARP{ARP})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT ARP{ARP}--></option>
+                                                        <!--4DENDLOOP-->
+                                                    <!--4DELSE-->
+                                                        <option value="<!--4DTEXT [Empleados]ARP-->" ><!--4DTEXT [Empleados]ARP--></option>                                                  
+                                                        <option value="BOLIVAR"  >BOLIVAR</option>                                                    
+                                                        <option value="COLMENA"  >COLMENA</option>                                                  
+                                                        <option value="COLPATRIA"  >COLPATRIA</option>                                                  
+                                                        <option value="EQUIDAD"  >EQUIDAD</option>                                                  
+                                                        <option value="ING"  >ING</option>                                                  
+                                                        <option value="LIBERTY"  >LIBERTY</option>                                                  
+                                                        <option value="MAPFRE"  >MAPFRE</option>                                                  
+                                                        <option value="NO APLICA"  >NO APLICA</option>                                                  
+                                                        <option value="POSITIVA"  >POSITIVA</option>                                                  
+                                                        <option value="PROTECCION"  >PROTECCION</option>                                                  
+                                                        <option value="SURA"  >SURA</option>
+                                                    <!--4DENDIF-->
                                                 </select>
                                             </div>
                                         </div>
@@ -619,11 +635,46 @@
                                         <div class="col-sm-6">
                                             <label class="control-label">Banco</label>
                                             <div>                                                
-                                                <select name="banco" id="banco" class="form-control" required>
-                                                    <option value=""></option>
-                                                    <!--4DLOOP bancos-->
-                                                      <option value="<!--4DTEXT bancos{bancos}-->" <!--4DIF ([Empleados]Banco_Corporacion=bancos{bancos})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT bancos{bancos}--></option>
-                                                    <!--4DENDLOOP-->
+                                                <select name="banco" id="banco" class="form-control" required>                                                    
+                                                    <!--4DIF (Size of array(bancos)#0)-->
+                                                        <!--4DLOOP bancos-->
+                                                            <option value="<!--4DTEXT bancos{bancos}-->" <!--4DIF ([Empleados]Banco_Corporacion=bancos{bancos})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT bancos{bancos}--></option>
+                                                        <!--4DENDLOOP-->
+                                                    <!--4DELSE-->
+                                                        <option value="<!--4DTEXT [Empleados]Banco_Corporacion-->"><!--4DTEXT [Empleados]Banco_Corporacion--></option>                                                        
+                                                        <option value="ABN AMRO BANK"  >ABN AMRO BANK</option>                                                    
+                                                        <option value="BANCO AGRARIO DE COLOMBIA"  >BANCO AGRARIO DE COLOMBIA</option>                                                    
+                                                        <option value="BANCO ALIADAS"  >BANCO ALIADAS</option>                                                    
+                                                        <option value="BANCO CAJA SOCIAL"  >BANCO CAJA SOCIAL</option>                                                    
+                                                        <option value="BANCO COLMENA" > BANCO COLMENA</option>                                                    
+                                                        <option value="BANCO COLPATRIA"  >BANCO COLPATRIA</option>                                                    
+                                                        <option value="BANCO COMERCIAL AVVILLAS"  >BANCO COMERCIAL AVVILLAS</option>                                                
+                                                        <option value="BANCO CONAVI"  >BANCO CONAVI</option>                                                    
+                                                        <option value="BANCO CORPBANCA"  >BANCO CORPBANCA</option>                                                    
+                                                        <option value="BANCO DAVIVIENDA"  >BANCO DAVIVIENDA</option>                                                    
+                                                        <option value="BANCO DE BOGOTÁ"  >BANCO DE BOGOTÁ</option>                                                    
+                                                        <option value="BANCO DE OCCIDENTE"  >BANCO DE OCCIDENTE</option>                                                    
+                                                        <option value="BANCO FALABELA S.A."  >BANCO FALABELA S.A.</option>                                                    
+                                                        <option value="BANCO FINANDINA S.A."  >BANCO FINANDINA S.A.</option>                                                    
+                                                        <option value="BANCO GRANAHORRAR"  >BANCO GRANAHORRAR</option>                                                
+                                                        <option value="BANCO POPULAR"  >BANCO POPULAR</option>                                                    
+                                                        <option value="BANCO STANDARD CHARTERED COLOMBIA"  >BANCO STANDARD CHARTERED COLOMBIA</option>                                                    
+                                                        <option value="BANCO SUDAMERIS COLOMBIA"  >BANCO SUDAMERIS COLOMBIA</option>                                                    
+                                                        <option value="BANCO SUPERIOR"  >BANCO SUPERIOR</option>                                                    
+                                                        <option value="BANCO TEQUENDAMA"  >BANCO TEQUENDAMA</option>                                                    
+                                                        <option value="BANCO UNIÓN COLOMBIANO"  >BANCO UNIÓN COLOMBIANO</option>                                                    
+                                                        <option value="BANCOLOMBIA"  >BANCOLOMBIA</option>                                                    
+                                                        <option value="BANCOOMEVA"  >BANCOOMEVA</option>                                                    
+                                                        <option value="BANESTADO"  >BANESTADO</option>                                                    
+                                                        <option value="BANISTMO COLOMBIA"  >BANISTMO COLOMBIA</option>                                                    
+                                                        <option value="BANKBOSTON"  >BANKBOSTON</option>                                                    
+                                                        <option value="BBVA COLOMBIA"  >BBVA COLOMBIA</option>                                                    
+                                                        <option value="CITIBANK"  >CITIBANK</option>                                                    
+                                                        <option value="GRANBANCO BANCAFE"  >GRANBANCO BANCAFE</option>                                                    
+                                                        <option value="HELM BANK"  >HELM BANK</option>                                                    
+                                                        <option value="MEGABANCO"  >MEGABANCO</option>
+                                                    <!--4DENDIF-->
+
                                                 </select>
                                             </div>
                                         </div>
@@ -634,6 +685,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row form-group">
+                                        <div class="col-sm-6">
+                                          <label class="control-label">NIT/CC Titular</label>
+                                          <div >                            
+                                            <input type="text" class="form-control" id="idTitular" placeholder=""  name="idTitular" value="<!--4DTEXT [Empleados]IdTitular-->"  autocomplete=off required> 
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="control-label" >Titular de Cuenta</label>
+                                                <input type="text" class="form-control" placeholder="" id="titular" onkeyup="upperCase(this)" name="titularCuenta" value="<!--4DTEXT [Empleados]TitularCuenta-->"  autocomplete=off required> 
+                                            </div>
+                                        </div>
+                                      </div>
                                     <div class="row form-group">
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -663,22 +728,125 @@
                     </div>
 
                     <div class="row">
-                        <!-- Archivos -->
+                        <!-- Naturaleza de la Relación  -->
                         <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                             <div class="card">
-                                <div class="card-header border-bottom">                                    
-                                    <h6 class="m-0">Archivos para Cargar</h6>                                                                                                            
+                                <div class="card-header border-bottom">
+                                    <h6 class="m-0">Naturaleza de la Relación</h6>
                                 </div>
                                 <div class="card-body pt-0">
                                     <br>
-                                    <p class="subtitle">*Certificación bancaria reciente.</p> 
-                                    <p class="subtitle">*RUT no mayor a 30 dias</p>                                                                        
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-6">¿Usted tiene algún tipo de vínculo con entidades del Gobierno? </label>
+                                        <div class="col-sm-2 row">
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="siVinculoGobierno" value="Si"  required name="vinculoGobierno" class="custom-control-input" onclick="validateVinculo()" <!--4DIF ([Empleados]Vinc_Gobierno=True)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="siVinculoGobierno">Si</label>
+                                            </div>
+                                            <div style="margin: 10px"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="noVinculoGobierno" value="No" name="vinculoGobierno" class="custom-control-input" onclick="validateVinculo()"  <!--4DIF ([Empleados]Vinc_Gobierno=False)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="noVinculoGobierno">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group row">
+                                                <label class="control-label col-sm-4">¿Cuál?</label>                                                
+                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="vincGobCual" value="<!--4DTEXT [Empleados]Vinc_Gobierno_Cual-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-6">¿Tiene familiares con alguna relación con entidades del Gobierno? </label>
+                                        <div class="col-sm-2 row">
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="siFamiliaGobierno" value="Si"  required name="familiaGobierno" class="custom-control-input" onclick="validateFamiliar()" <!--4DIF ([Empleados]Familiar_Gobierno=True)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="siFamiliaGobierno">Si</label>
+                                            </div>
+                                            <div style="margin: 10px"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="noFamiliaGobierno" value="No" name="familiaGobierno" class="custom-control-input" onclick="validateFamiliar()"  <!--4DIF ([Empleados]Familiar_Gobierno=False)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="noFamiliaGobierno">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group row">
+                                                <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
+                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="famGobCual" value="<!--4DTEXT [Empleados]Familiar_Gobierno_Cual-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-6">¿Tiene relación con algún empleado de FTC? </label>
+                                        <div class="col-sm-2 row">
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="siRelacionFtc" value="Si"  required name="relacionFtc" class="custom-control-input" onclick="validateEmpleado()" <!--4DIF ([Empleados]Rel_Empl_Ftc=True)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="siRelacionFtc">Si</label>
+                                            </div>
+                                            <div style="margin: 10px"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="noRelacionFtc" value="No" name="relacionFtc" class="custom-control-input" onclick="validateEmpleado()"  <!--4DIF ([Empleados]Rel_Empl_Ftc=False)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="noRelacionFtc">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group row">
+                                                <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
+                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="relacionFtcCual" value="<!--4DTEXT [Empleados]Rel_Empl_Ftc_Cual-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-6">¿Presta algún tipo de servicio a través de un tercero para FTC? </label>
+                                        <div class="col-sm-2 row">
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="siServicioTercero" value="Si"  required name="servicioTercero" class="custom-control-input" onclick="validateTercero()" <!--4DIF ([Empleados]Servicio_Tercero=True)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="siServicioTercero">Si</label>
+                                            </div>
+                                            <div style="margin: 10px"></div>
+                                            <div class="custom-control custom-radio ">
+                                                <input type="radio" id="noServicioTercero" value="No" name="servicioTercero" class="custom-control-input" onclick="validateTercero()"  <!--4DIF ([Empleados]Servicio_Tercero=False)-->checked<!--4DENDIF-->>
+                                                <label class="custom-control-label" for="noServicioTercero">No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group row">
+                                                <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
+                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="servTerceroCual" value="<!--4DTEXT [Empleados]Servicio_Tercero_Cua-->" autocomplete=off>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                            <!-- Naturaleza de la Relación -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Archivos -->
+                        <div class="col-lg-12 col-md-12 col-sm-12 mb-4 ">
+                            <div class="card">
+                                <div class="card-header border-bottom">               
+                                    <div>
+                                        <h6 class="m-0 ">Archivos para Cargar</h6>
+                                        <br>                                        
+                                        <p class="subtitle ">- Formato permitido: PDF</p>
+                                        <p class="subtitle ">- (*) Documentos Obligatorios</p>      
+                                        <p class="subtitle ">- Máximo 5 mb por archivo</p> 
+                                    </div>                     
+                                </div>
+                                <div class="card-body pt-0">                                                                                                          
                                     <br>
                                     <div class="row form-group ">
-                                        <label class="control-label col-sm-4">Cédula de Ciudadanía</label>
+                                        <label class="control-label col-sm-4">Cédula de Ciudadanía *</label>
                                         <div class="col-sm-8 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"cedulaCiudadania")="")-->                                 
-                                            <input type="file" class="form-control col-sm-8"  name="cedulaCiudadania" onchange="ValidateSingleInput(this,'.pdf','.jpg');">
+                                            <input type="file" class="form-control col-sm-8"  name="cedulaCiudadania" onchange="ValidateSingleInput(this,'.pdf','.jpg');" required>
                                             <!--4DELSE-->                              
                                                 <div class="col-md-4">
                                                     <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"cedulaCiudadania")--></h5>
@@ -691,10 +859,12 @@
                                     </div>
                                     <br>
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">RUT</label>
+                                        <label class="control-label col-sm-4">RUT * 
+                                            <p class="subtitle">RUT no mayor a 30 días</p>
+                                        </label>
                                         <div class="col-sm-8 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"rut")="")-->                                 
-                                            <input type="file" class="form-control col-sm-8"  name="rut" onchange="ValidateSingleInput(this,'.pdf');">
+                                            <input type="file" class="form-control col-sm-8"  name="rut" onchange="ValidateSingleInput(this,'.pdf');" required>
                                             
                                             <!--4DELSE-->                              
                                                 <div class="col-md-4">
@@ -703,10 +873,28 @@
                                                 <div class="col-md-8">
                                                     <input type="file" class="form-control col-sm-8"  name="rut" onchange="ValidateSingleInput(this,'.pdf');">
                                                 </div>                      
-                                            <!--4DENDIF-->
+                                            <!--4DENDIF-->                                            
                                         </div>
                                     </div>
                                     <br>
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-4">Certificación Bancaria * 
+                                            <p class="subtitle">Certificación bancaria no mayor a 30 días.</p> 
+                                        </label>
+                                        <div class="col-sm-8 row">
+                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certBancaria")="")-->                                 
+                                            <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');" required>
+                                            <!--4DELSE-->                              
+                                                <div class="col-md-4">
+                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"certBancaria")--></h5>
+                                                </div>                
+                                                <div class="col-md-8">
+                                                    <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');">
+                                                </div>                      
+                                            <!--4DENDIF-->
+                                        </div>
+                                    </div>
+                                    <br>                                    
                                     <div class="row form-group">
                                         <label class="control-label col-sm-4">Certificado EPS</label>
                                         <div class="col-sm-8 row">
@@ -724,10 +912,10 @@
                                     </div>
                                     <br>
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">Certificado ARL</label>
+                                        <label class="control-label col-sm-4">Certificado ARL *</label>
                                         <div class="col-sm-8 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certARL")="")-->                                 
-                                            <input type="file" class="form-control col-sm-8"  name="certARL" onchange="ValidateSingleInput(this,'.pdf');">
+                                            <input type="file" class="form-control col-sm-8"  name="certARL" onchange="ValidateSingleInput(this,'.pdf');" required>
                                             <!--4DELSE-->                              
                                                 <div class="col-md-4">
                                                     <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"certARL")--></h5>
@@ -753,23 +941,7 @@
                                                 </div>                      
                                             <!--4DENDIF-->
                                         </div>
-                                    </div>
-                                    <br>
-                                    <div class="row form-group">
-                                        <label class="control-label col-sm-4">Certificación Bancaria</label>
-                                        <div class="col-sm-8 row">
-                                            <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certBancaria")="")-->                                 
-                                            <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');">
-                                            <!--4DELSE-->                              
-                                                <div class="col-md-4">
-                                                    <h5><!--4DTEXT OB Get([Empleados]Nombre_Adjuntos;"certBancaria")--></h5>
-                                                </div>                
-                                                <div class="col-md-8">
-                                                    <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');">
-                                                </div>                      
-                                            <!--4DENDIF-->
-                                        </div>
-                                    </div>
+                                    </div>                                  
                                     <br>
                                 </div>
                             </div>

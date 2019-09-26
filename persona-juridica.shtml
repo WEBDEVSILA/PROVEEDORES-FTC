@@ -152,10 +152,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                   <div class="card">
                     <div class="card-header border-bottom">
-                      <h6 class="m-0">Datos Básicos</h6>
+                      <h6 class="m-0">Datos Básicos</h6>                      
                     </div>
                     <div class="card-body pt-0">
                       <br>
+                      <p style="font-weight: normal; color: rgba(12, 60, 107, 0.747);">* Recuerde llenar los campos en su totalidad para el correcto envío del formulario. En caso que algún campo no aplique para usted escriba N/A. </p>
                       <div class="row">
                         <div class="col-sm-8">
                             <div class="form-group ">
@@ -220,31 +221,34 @@
                             </div>   
                         </div>    
                       </div>
+                      <br>
                       <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group ">
-                                <label class="control-label">Primer Apellido Representante Legal</label>                                    
-                                <input type="text" class="form-control" name="primerApellido" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Primer_Apellido-->" required autocomplete=off>                             
-                            </div>   
+                        <div class="col-sm-6">
+                          <div class="form-group ">
+                              <label class="control-label">Primer Nombre Representante Legal</label>                                    
+                              <input type="text" class="form-control" name="primerNombre" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Primer_Nombre-->" required autocomplete=off>
+                          </div>   
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="control-label" >Segundo Apellido Representante Legal</label>                                                
-                                <input type="text" class="form-control" placeholder=""  name="segundoApellido" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Segundo_Apellido-->"  required autocomplete=off>                                                
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group ">
-                                <label class="control-label">Primer Nombre Representante Legal</label>                                    
-                                <input type="text" class="form-control" name="primerNombre" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Primer_Nombre-->" required autocomplete=off>
-                            </div>   
-                        </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label" >Segundo Nombre Representante Legal</label>                                                
                                 <input type="text" class="form-control" placeholder=""  onkeyup="upperCase(this)" name="segundoNombre" value="<!--4DTEXT [Proveedor]Segundo_Nombre-->" autocomplete=off>
                             </div>
                         </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label class="control-label">Primer Apellido Representante Legal</label>                                    
+                                <input type="text" class="form-control" name="primerApellido" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Primer_Apellido-->" required autocomplete=off>                             
+                            </div>   
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >Segundo Apellido Representante Legal</label>                                                
+                                <input type="text" class="form-control" placeholder=""  name="segundoApellido" onkeyup="upperCase(this)" value="<!--4DTEXT [Proveedor]Segundo_Apellido-->"  required autocomplete=off>                                                
+                            </div>
+                        </div>                       
                       </div>                          
                       <div class="row">
                         <div class="col-sm-6">
@@ -260,6 +264,7 @@
                             </div>
                         </div>
                       </div>
+                      <br>
                       <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group ">
@@ -552,11 +557,46 @@
                         <div class="col-sm-6">
                           <label class="control-label">Banco</label>
                           <div >                            
-                            <select name="banco" id="banco" class="form-control" required>
-                              <option value=""></option>
-                              <!--4DLOOP bancos-->
-                                <option value="<!--4DTEXT bancos{bancos}-->" <!--4DIF ([Proveedor]Banco=bancos{bancos})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT bancos{bancos}--></option>
-                              <!--4DENDLOOP-->
+                            <select name="banco" id="banco" class="form-control" required>                              
+                              <!--4DIF (Size of array(bancos)#0)-->
+                                <!--4DLOOP bancos-->
+                                  <option value="<!--4DTEXT bancos{bancos}-->" <!--4DIF ([Proveedor]Banco=bancos{bancos})-->selected > <!--4DELSE--> ><!--4DENDIF--><!--4DTEXT bancos{bancos}--></option>
+                                <!--4DENDLOOP-->
+                               <!--4DELSE-->
+                               <option value="<!--4DTEXT [Proveedor]Banco-->"><!--4DTEXT [Proveedor]Banco--></option>                                                        
+                               <option value="ABN AMRO BANK"  >ABN AMRO BANK</option>                                                    
+                               <option value="BANCO AGRARIO DE COLOMBIA"  >BANCO AGRARIO DE COLOMBIA</option>                                                    
+                               <option value="BANCO ALIADAS"  >BANCO ALIADAS</option>                                                    
+                               <option value="BANCO CAJA SOCIAL"  >BANCO CAJA SOCIAL</option>                                                    
+                               <option value="BANCO COLMENA" > BANCO COLMENA</option>                                                    
+                               <option value="BANCO COLPATRIA"  >BANCO COLPATRIA</option>                                                    
+                               <option value="BANCO COMERCIAL AVVILLAS"  >BANCO COMERCIAL AVVILLAS</option>                                                
+                               <option value="BANCO CONAVI"  >BANCO CONAVI</option>                                                    
+                               <option value="BANCO CORPBANCA"  >BANCO CORPBANCA</option>                                                    
+                               <option value="BANCO DAVIVIENDA"  >BANCO DAVIVIENDA</option>                                                    
+                               <option value="BANCO DE BOGOTÁ"  >BANCO DE BOGOTÁ</option>                                                    
+                               <option value="BANCO DE OCCIDENTE"  >BANCO DE OCCIDENTE</option>                                                    
+                               <option value="BANCO FALABELA S.A."  >BANCO FALABELA S.A.</option>                                                    
+                               <option value="BANCO FINANDINA S.A."  >BANCO FINANDINA S.A.</option>                                                    
+                               <option value="BANCO GRANAHORRAR"  >BANCO GRANAHORRAR</option>                                                
+                               <option value="BANCO POPULAR"  >BANCO POPULAR</option>                                                    
+                               <option value="BANCO STANDARD CHARTERED COLOMBIA"  >BANCO STANDARD CHARTERED COLOMBIA</option>                                                    
+                               <option value="BANCO SUDAMERIS COLOMBIA"  >BANCO SUDAMERIS COLOMBIA</option>                                                    
+                               <option value="BANCO SUPERIOR"  >BANCO SUPERIOR</option>                                                    
+                               <option value="BANCO TEQUENDAMA"  >BANCO TEQUENDAMA</option>                                                    
+                               <option value="BANCO UNIÓN COLOMBIANO"  >BANCO UNIÓN COLOMBIANO</option>                                                    
+                               <option value="BANCOLOMBIA"  >BANCOLOMBIA</option>                                                    
+                               <option value="BANCOOMEVA"  >BANCOOMEVA</option>                                                    
+                               <option value="BANESTADO"  >BANESTADO</option>                                                    
+                               <option value="BANISTMO COLOMBIA"  >BANISTMO COLOMBIA</option>                                                    
+                               <option value="BANKBOSTON"  >BANKBOSTON</option>                                                    
+                               <option value="BBVA COLOMBIA"  >BBVA COLOMBIA</option>                                                    
+                               <option value="CITIBANK"  >CITIBANK</option>                                                    
+                               <option value="GRANBANCO BANCAFE"  >GRANBANCO BANCAFE</option>                                                    
+                               <option value="HELM BANK"  >HELM BANK</option>                                                    
+                               <option value="MEGABANCO"  >MEGABANCO</option>
+                              <!--4DENDIF-->
+
                             </select>
                           </div>
                         </div>
@@ -567,6 +607,22 @@
                             </div>
                         </div>
                       </div>    
+                      
+                      <div class="row form-group">
+                        <div class="col-sm-6">
+                          <label class="control-label">NIT/CC Titular</label>
+                          <div >                            
+                            <input type="text" class="form-control" placeholder=""  name="idTitular" value="<!--4DTEXT [Proveedor]IdTitular-->"  autocomplete=off required> 
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label" >Titular de Cuenta</label>
+                                <input type="text" class="form-control" placeholder=""  name="titularCuenta" value="<!--4DTEXT [Proveedor]TitularCuenta-->"  autocomplete=off required> 
+                            </div>
+                        </div>
+                      </div>   
+
                       <div class="row form-group">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -590,7 +646,7 @@
                           </select>
                         </div>                       
                       </div>
-
+                      
                     </div>
                   </div>
                 </div>
@@ -598,16 +654,124 @@
               </div>                             
 
               <div class="row">
+                <!-- Naturaleza de la Relación  -->
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                    <div class="card">
+                        <div class="card-header border-bottom">
+                            <h6 class="m-0">Naturaleza de la Relación</h6>
+                        </div>
+                        <div class="card-body pt-0">
+                            <br>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6">¿Usted tiene algún tipo de vínculo con entidades del Gobierno? </label>
+                                <div class="col-sm-2 row">
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="siVinculoGobierno" value="Si"  required name="vinculoGobierno" class="custom-control-input" onclick="validateVinculo()" <!--4DIF ([Proveedor]Vinc_Gobierno=True)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="siVinculoGobierno">Si</label>
+                                    </div>
+                                    <div style="margin: 10px"></div>
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="noVinculoGobierno" value="No" name="vinculoGobierno" class="custom-control-input" onclick="validateVinculo()"  <!--4DIF ([Proveedor]Vinc_Gobierno=False)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="noVinculoGobierno">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4">¿Cuál?</label>                                                
+                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="vincGobCual" value="<!--4DTEXT [Proveedor]Vinc_Gobierno_Cual-->" autocomplete=off>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6">¿Tiene familiares con alguna relación con entidades del Gobierno? </label>
+                                <div class="col-sm-2 row">
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="siFamiliaGobierno" value="Si"  required name="familiaGobierno" class="custom-control-input" onclick="validateFamiliar()" <!--4DIF ([Proveedor]Familiar_Gobierno=True)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="siFamiliaGobierno">Si</label>
+                                    </div>
+                                    <div style="margin: 10px"></div>
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="noFamiliaGobierno" value="No" name="familiaGobierno" class="custom-control-input" onclick="validateFamiliar()"  <!--4DIF ([Proveedor]Familiar_Gobierno=False)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="noFamiliaGobierno">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group row">
+                                        <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
+                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="famGobCual" value="<!--4DTEXT [Proveedor]Familiar_Gobierno_Cual-->" autocomplete=off>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6">¿Tiene relación con algún empleado de FTC? </label>
+                                <div class="col-sm-2 row">
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="siRelacionFtc" value="Si"  required name="relacionFtc" class="custom-control-input" onclick="validateEmpleado()" <!--4DIF ([Proveedor]Rel_Empl_Ftc=True)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="siRelacionFtc">Si</label>
+                                    </div>
+                                    <div style="margin: 10px"></div>
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="noRelacionFtc" value="No" name="relacionFtc" class="custom-control-input" onclick="validateEmpleado()"  <!--4DIF ([Proveedor]Rel_Empl_Ftc=False)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="noRelacionFtc">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group row">
+                                        <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
+                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="relacionFtcCual" value="<!--4DTEXT [Proveedor]Rel_Empl_Ftc_Cual-->" autocomplete=off>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <label class="control-label col-sm-6">¿Presta algún tipo de servicio a través de un tercero para FTC? </label>
+                                <div class="col-sm-2 row">
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="siServicioTercero" value="Si"  required name="servicioTercero" class="custom-control-input" onclick="validateTercero()" <!--4DIF ([Proveedor]Servicio_Tercero=True)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="siServicioTercero">Si</label>
+                                    </div>
+                                    <div style="margin: 10px"></div>
+                                    <div class="custom-control custom-radio ">
+                                        <input type="radio" id="noServicioTercero" value="No" name="servicioTercero" class="custom-control-input" onclick="validateTercero()"  <!--4DIF ([Proveedor]Servicio_Tercero=False)-->checked<!--4DENDIF-->>
+                                        <label class="custom-control-label" for="noServicioTercero">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group row">
+                                        <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
+                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="servTerceroCual" value="<!--4DTEXT [Proveedor]Servicio_Tercero_Cua-->" autocomplete=off>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <!-- Naturaleza de la Relación -->
+                </div>
+            </div>
+
+              <div class="row">
                 <!-- Archivos -->
                 <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
                     <div class="card">
                       <div class="card-header border-bottom">
-                          <h6 class="m-0">Archivos para Cargar</h6>
+                          <div>
+                            <h6 class="m-0 ">Archivos para Cargar</h6>
+                            <br>                                        
+                            <p class="subtitle ">- Formato permitido: PDF</p>
+                            <p class="subtitle ">- (*) Documentos Obligatorios</p>
+                            <p class="subtitle ">- Máximo 5 mb por archivo</p> 
+                          </div>
                       </div>
-                      <div class="card-body pt-0">
+                      <div class="card-body pt-0">                          
                           <br>                       
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">RUT</label>
+                              <label class="control-label col-sm-4">RUT *
+                                  <p class="subtitle">RUT no mayor a 30 días</p>
+                              </label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"rut")="")-->
                                     <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this,'.pdf');" required>
@@ -624,7 +788,7 @@
                           </div>
                           <br>
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">Cédula Representante Legal</label>
+                              <label class="control-label col-sm-4">Cédula Representante Legal *</label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"cedulaRepLegal")="")-->                                 
                                  <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this,'.pdf','.jpg');" required>  
@@ -640,7 +804,9 @@
                           </div>
                           <br>
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">Cámara de Comercio</label>
+                              <label class="control-label col-sm-4">Cámara de Comercio *
+                                  <p class="subtitle">Camara de Comercio no mayor a 30 días.</p> 
+                              </label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"camaraComercio")="")-->                                                                  
                                  <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this,'.pdf');" required>  
@@ -656,7 +822,9 @@
                           </div>
                           <br>
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">Certificación Bancaria</label>
+                              <label class="control-label col-sm-4">Certificación Bancaria *
+                                  <p class="subtitle">Certificación bancaria no mayor a 30 días.</p> 
+                              </label>
                               <div class="col-sm-8 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"certBancaria")="")-->
                                  <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');" required>
