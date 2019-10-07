@@ -55,6 +55,7 @@ function validateCIIU(element,ciiu){
             document.getElementById(ciiu).value=description;                        
         }else{
             document.getElementById(ciiu).value="";            
+            alert("Parece que el código CIIU ingresado no existe, intente de nuevo por favor");
         }
     }else{
         document.getElementById(ciiu).value="";        

@@ -75,10 +75,11 @@ function validateCIIU(element,ciiu){
         if(description != undefined){
             document.getElementById(ciiu).value=description;            
         }else{
-            document.getElementById(ciiu).value="";            
+            document.getElementById(ciiu).value=""; 
+            alert("Parece que el código CIIU ingresado no existe, intente de nuevo por favor");
         }
     }else{
-        document.getElementById(ciiu).value="";        
+        document.getElementById(ciiu).value="";                
     }    
 }
 function validateErase(element,ciiu){

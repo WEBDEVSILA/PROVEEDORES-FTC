@@ -416,19 +416,19 @@
                                         <div class="col-sm-4">
                                             <div class="form-group ">
                                                 <label class="control-label">Empresa</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" name="empresa" required value="<!--4DTEXT [Empleados]Empresa-->" autocomplete=off>
+                                                <input type="text" class="form-control" onkeyup="upperCase(this)" name="empresa"  value="<!--4DTEXT [Empleados]Empresa-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Rep. Legal</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder="" required name="repLegal" value="<!--4DTEXT [Empleados]Representante_Legal-->" autocomplete=off>
+                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder=""  name="repLegal" value="<!--4DTEXT [Empleados]Representante_Legal-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">C.C. </label>
-                                                <input type="text" class="form-control" placeholder="" required name="CC" value="<!--4DTEXT [Empleados]Cedula_Replegal-->" autocomplete=off>
+                                                <input type="text" class="form-control" placeholder=""  name="CC" value="<!--4DTEXT [Empleados]Cedula_Replegal-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -437,19 +437,19 @@
                                         <div class="col-sm-4">
                                             <div class="form-group ">
                                                 <label class="control-label">Nit Empresa</label>
-                                                <input type="text" class="form-control" name="nitEmpresa" required value="<!--4DTEXT [Empleados]NIT_Empresa-->" autocomplete=off>
+                                                <input type="text" class="form-control" name="nitEmpresa"  value="<!--4DTEXT [Empleados]NIT_Empresa-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Cargo</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder="" required name="cargo" value="<!--4DTEXT [Empleados]Cargo-->" autocomplete=off>
+                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder=""  name="cargo" value="<!--4DTEXT [Empleados]Cargo-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Profesión</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder="" required name="Profesion" value="<!--4DTEXT [Empleados]Profesión-->" autocomplete=off>
+                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder=""  name="Profesion" value="<!--4DTEXT [Empleados]Profesión-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -458,19 +458,19 @@
                                         <div class="col-sm-4">
                                             <div class="form-group ">
                                                 <label class="control-label">Extensión Interna</label>
-                                                <input type="text" class="form-control" name="extInterna" required value="<!--4DTEXT [Empleados]Extensión_Interna-->" autocomplete=off>
+                                                <input type="text" class="form-control" name="extInterna"  value="<!--4DTEXT [Empleados]Extensión_Interna-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Área</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder="" required name="area" value="<!--4DTEXT [Empleados]Area_Departamento-->" autocomplete=off>
+                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder=""  name="area" value="<!--4DTEXT [Empleados]Area_Departamento-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Supervisor</label>
-                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder="" required name="supervisor" value="<!--4DTEXT [Empleados]Supervisor-->" autocomplete=off>
+                                                <input type="text" class="form-control" onkeyup="upperCase(this)" placeholder=""  name="supervisor" value="<!--4DTEXT [Empleados]Supervisor-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>                                                                                                                           
@@ -478,13 +478,13 @@
                                         <div class="col-sm-6">
                                             <label class="control-label">Dirección RUT</label>
                                             <div>
-                                                <input type="text" class="form-control" name="direccionRut" required value="<!--4DTEXT [Empleados]Direccion_Rut-->" autocomplete=off>
+                                                <input type="text" class="form-control" name="direccionRut"  value="<!--4DTEXT [Empleados]Direccion_Rut-->" autocomplete=off>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label class="control-label">Teléfono RUT</label>
-                                                <input type="text" class="form-control" placeholder="" required name="telefonoRut" value="<!--4DTEXT [Empleados]Telefono_Rut-->" autocomplete=off>
+                                                <input type="text" class="form-control" placeholder=""  name="telefonoRut" value="<!--4DTEXT [Empleados]Telefono_Rut-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -527,7 +527,7 @@
                                             <label class="control-label" >Regimen IVA</label>
                                         </div>                   
                                         <div class="col-sm-9">
-                                            <select name="regimen" id="regimen" class="form-control " required>
+                                            <select name="regimen" id="regimen" class="form-control " >
                                             <option value=""></option>
                                             <option value="Responsable IVA" <!--4DIF ([Empleados]Regimen_IVA="Responsable IVA")-->selected<!--4DENDIF--> >Responsable IVA</option>
                                             <option value="No Responsable IVA"  <!--4DIF ([Empleados]Regimen_IVA="No Responsable IVA")-->selected<!--4DENDIF-->>No Responsable IVA</option>
@@ -752,7 +752,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="vincGobCual" value="<!--4DTEXT [Empleados]Vinc_Gobierno_Cual-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="vincGobCual" value="<!--4DTEXT [Empleados]Vinc_Gobierno_Cual-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -773,7 +773,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="famGobCual" value="<!--4DTEXT [Empleados]Familiar_Gobierno_Cual-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="famGobCual" value="<!--4DTEXT [Empleados]Familiar_Gobierno_Cual-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -795,7 +795,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="relacionFtcCual" value="<!--4DTEXT [Empleados]Rel_Empl_Ftc_Cual-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="relacionFtcCual" value="<!--4DTEXT [Empleados]Rel_Empl_Ftc_Cual-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -816,7 +816,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder="" required name="servTerceroCual" value="<!--4DTEXT [Empleados]Servicio_Tercero_Cua-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="servTerceroCual" value="<!--4DTEXT [Empleados]Servicio_Tercero_Cua-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
