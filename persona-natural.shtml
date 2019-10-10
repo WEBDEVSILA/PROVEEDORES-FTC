@@ -333,6 +333,8 @@
                                                     <option value="SOLSALUD">SOLSALUD</option>
                                                     <option value="SURA">SURA</option>
                                                     <option value="SUSALUD">SUSALUD</option>
+                                                    <option value="OTRO">OTRO</option>
+                                                    <option value="NO APLICA">NO APLICA</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -357,6 +359,8 @@
                                                         <option value="POSITIVA"  >POSITIVA</option>                                                  
                                                         <option value="PROTECCION"  >PROTECCION</option>                                                  
                                                         <option value="SURA"  >SURA</option>
+                                                        <option value="OTRO">OTRO</option>
+                                                        <option value="NO APLICA">NO APLICA</option>
                                                     <!--4DENDIF-->
                                                 </select>
                                             </div>
@@ -519,7 +523,13 @@
                                             <input type="checkbox" class="custom-control-input" id="entSinAnim" name="entSinAnim" <!--4DIF ([Empleados]Ent_Sinanimo = True)-->checked<!--4DENDIF-->>
                                             <label class="custom-control-label" for="entSinAnim">Ent. Sin Animo de Lucro</label>
                                             </div>
-                                        </div>                
+                                        </div>       
+                                        <div class="col-sm-2">
+                                            <div class="custom-control custom-checkbox mb-1">
+                                            <input type="checkbox" class="custom-control-input" id="regSimple" name="regSimple" <!--4DIF ([Empleados]Reg_Simple = True)-->checked<!--4DENDIF-->>
+                                            <label class="custom-control-label" for="regSimple">Régimen Simple</label>
+                                            </div>
+                                        </div>             
                                     </div> 
                                     <br>
                                     <div class="row">    
@@ -554,7 +564,7 @@
                                             <div class="row col-sm-4">
                                                 <label class="control-label col-sm-5">Principal</label>
                                                 <div class="col-sm-7">
-                                                    <input type="number" id="principal" class="form-control" name="actividadPrincipal" required
+                                                    <input type="number" id="principal" class="form-control" name="actividadPrincipal" 
                                                         value="<!--4DTEXT [Empleados]Codigo_ciiu_princ-->" autocomplete=off 
                                                         onKeyPress="if(this.value.length==4) return false;" min=0 max=9999
                                                         onchange="validateCIIU(this,'ciiu1')" onkeyup="validateErase(this,'ciiu1')"
@@ -673,6 +683,7 @@
                                                         <option value="GRANBANCO BANCAFE"  >GRANBANCO BANCAFE</option>                                                    
                                                         <option value="HELM BANK"  >HELM BANK</option>                                                    
                                                         <option value="MEGABANCO"  >MEGABANCO</option>
+                                                        <option value="NO APLICA"  >NO APLICA</option>
                                                     <!--4DENDIF-->
 
                                                 </select>
@@ -752,7 +763,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="vincGobCual" value="<!--4DTEXT [Empleados]Vinc_Gobierno_Cual-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="vincGobCual" value="<!--4DTEXT [Empleados]Vinc_Gobierno_Cual-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -773,7 +784,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="famGobCual" value="<!--4DTEXT [Empleados]Familiar_Gobierno_Cual-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="famGobCual" value="<!--4DTEXT [Empleados]Familiar_Gobierno_Cual-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -795,7 +806,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="relacionFtcCual" value="<!--4DTEXT [Empleados]Rel_Empl_Ftc_Cual-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="relacionFtcCual" value="<!--4DTEXT [Empleados]Rel_Empl_Ftc_Cual-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -816,7 +827,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group row">
                                                 <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                                <input type="text" class="form-control col-sm-8" placeholder=""  name="servTerceroCual" value="<!--4DTEXT [Empleados]Servicio_Tercero_Cua-->" autocomplete=off>
+                                                <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="servTerceroCual" value="<!--4DTEXT [Empleados]Servicio_Tercero_Cua-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>
@@ -843,8 +854,8 @@
                                 <div class="card-body pt-0">                                                                                                          
                                     <br>
                                     <div class="row form-group ">
-                                        <label class="control-label col-sm-4">Cédula de Ciudadanía *</label>
-                                        <div class="col-sm-8 row">
+                                        <label class="control-label col-sm-5">Cédula de Ciudadanía *</label>
+                                        <div class="col-sm-7 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"cedulaCiudadania")="")-->                                 
                                             <input type="file" class="form-control col-sm-8"  name="cedulaCiudadania" onchange="ValidateSingleInput(this,'.pdf','.jpg');" required>
                                             <!--4DELSE-->                              
@@ -859,10 +870,10 @@
                                     </div>
                                     <br>
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">RUT * 
+                                        <label class="control-label col-sm-5">RUT * 
                                             <p class="subtitle">RUT no mayor a 30 días</p>
                                         </label>
-                                        <div class="col-sm-8 row">
+                                        <div class="col-sm-7 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"rut")="")-->                                 
                                             <input type="file" class="form-control col-sm-8"  name="rut" onchange="ValidateSingleInput(this,'.pdf');" required>
                                             
@@ -878,10 +889,10 @@
                                     </div>
                                     <br>
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">Certificación Bancaria * 
+                                        <label class="control-label col-sm-5">Certificación Bancaria * 
                                             <p class="subtitle">Certificación bancaria no mayor a 30 días.</p> 
                                         </label>
-                                        <div class="col-sm-8 row">
+                                        <div class="col-sm-7 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certBancaria")="")-->                                 
                                             <input type="file" class="form-control col-sm-8"  name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');" required>
                                             <!--4DELSE-->                              
@@ -896,8 +907,8 @@
                                     </div>
                                     <br>                                    
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">Certificado EPS</label>
-                                        <div class="col-sm-8 row">
+                                        <label class="control-label col-sm-5">Certificado EPS</label>
+                                        <div class="col-sm-7 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certEPS")="")-->                                 
                                             <input type="file" class="form-control col-sm-8"  name="certEPS" onchange="ValidateSingleInput(this,'.pdf');">
                                             <!--4DELSE-->                              
@@ -912,8 +923,8 @@
                                     </div>
                                     <br>
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">Certificado ARL *</label>
-                                        <div class="col-sm-8 row">
+                                        <label class="control-label col-sm-5">Certificado ARL *</label>
+                                        <div class="col-sm-7 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"certARL")="")-->                                 
                                             <input type="file" class="form-control col-sm-8"  name="certARL" onchange="ValidateSingleInput(this,'.pdf');" required>
                                             <!--4DELSE-->                              
@@ -928,8 +939,8 @@
                                     </div>
                                     <br>
                                     <div class="row form-group">
-                                        <label class="control-label col-sm-4">Fondo de Pensión</label>
-                                        <div class="col-sm-8 row">
+                                        <label class="control-label col-sm-5">Fondo de Pensión</label>
+                                        <div class="col-sm-7 row">
                                             <!--4DIF (OB Get([Empleados]Ruta_Adjuntos;"fondoPension")="")-->                                 
                                             <input type="file" class="form-control col-sm-8"  name="fondoPension" onchange="ValidateSingleInput(this,'.pdf');">
                                             <!--4DELSE-->                              
@@ -942,6 +953,23 @@
                                             <!--4DENDIF-->
                                         </div>
                                     </div>                                  
+                                    <div class="row form-group">
+                                        <label class="control-label col-sm-5">Otros
+                                            <p class="subtitle">En caso de ser más de un documento, por favor unifíquelo en 1 solo archivo PDF</p> 
+                                        </label>
+                                        <div class="col-sm-7 row">
+                                           <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"otro")="")-->
+                                           <input type="file" class="form-control" name="otro" onchange="ValidateSingleInput(this,'.pdf');">
+                                           <!--4DELSE-->                              
+                                               <div class="col-md-4">
+                                                   <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"otro")--></h5>
+                                               </div>                
+                                               <div class="col-md-8">                                        
+                                                  <input type="file" class="form-control" name="otro" onchange="ValidateSingleInput(this,'.pdf');">
+                                               </div>                      
+                                          <!--4DENDIF-->
+                                        </div>
+                                    </div>
                                     <br>
                                 </div>
                             </div>

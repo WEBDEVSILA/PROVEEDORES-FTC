@@ -422,6 +422,12 @@
                             <label class="custom-control-label" for="entSinAnim">Ent. Sin Animo de Lucro</label>
                           </div>
                         </div>
+                        <div class="col-sm-2">
+                          <div class="custom-control custom-checkbox mb-1">
+                          <input type="checkbox" class="custom-control-input" id="regSimple" name="regSimple" <!--4DIF ([Proveedor]Reg_Simple = True)-->checked<!--4DENDIF-->>
+                          <label class="custom-control-label" for="regSimple">Régimen Simple</label>
+                          </div>
+                      </div>
 
                       </div>  
                       <br>
@@ -678,7 +684,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group row">
                                         <label class="control-label col-sm-4">¿Cuál?</label>                                                
-                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="vincGobCual" value="<!--4DTEXT [Proveedor]Vinc_Gobierno_Cual-->" autocomplete=off>
+                                        <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="vincGobCual" value="<!--4DTEXT [Proveedor]Vinc_Gobierno_Cual-->" autocomplete=off>
                                     </div>
                                 </div>
                             </div>
@@ -687,7 +693,7 @@
                                 <label class="control-label col-sm-6">¿Tiene familiares con alguna relación con entidades del Gobierno? </label>
                                 <div class="col-sm-2 row">
                                     <div class="custom-control custom-radio ">
-                                        <input type="radio" id="siFamiliaGobierno" value="Si"  required name="familiaGobierno" class="custom-control-input" onclick="validateFamiliar()" <!--4DIF ([Proveedor]Familiar_Gobierno=True)-->checked<!--4DENDIF-->>
+                                        <input type="radio" id="siFamiliaGobierno" value="Si"   name="familiaGobierno" class="custom-control-input" onclick="validateFamiliar()" <!--4DIF ([Proveedor]Familiar_Gobierno=True)-->checked<!--4DENDIF-->>
                                         <label class="custom-control-label" for="siFamiliaGobierno">Si</label>
                                     </div>
                                     <div style="margin: 10px"></div>
@@ -699,7 +705,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group row">
                                         <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="famGobCual" value="<!--4DTEXT [Proveedor]Familiar_Gobierno_Cual-->" autocomplete=off>
+                                        <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="famGobCual" value="<!--4DTEXT [Proveedor]Familiar_Gobierno_Cual-->" autocomplete=off>
                                     </div>
                                 </div>
                             </div>
@@ -721,7 +727,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group row">
                                         <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="relacionFtcCual" value="<!--4DTEXT [Proveedor]Rel_Empl_Ftc_Cual-->" autocomplete=off>
+                                        <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="relacionFtcCual" value="<!--4DTEXT [Proveedor]Rel_Empl_Ftc_Cual-->" autocomplete=off>
                                     </div>
                                 </div>
                             </div>
@@ -742,7 +748,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group row">
                                         <label for="vinculoGobiernoCual" class="control-label col-sm-4">¿Cuál?</label>                                                
-                                        <input type="text" class="form-control col-sm-8" placeholder="" required name="servTerceroCual" value="<!--4DTEXT [Proveedor]Servicio_Tercero_Cua-->" autocomplete=off>
+                                        <input type="text" class="form-control col-sm-8" placeholder="N/A"  name="servTerceroCual" value="<!--4DTEXT [Proveedor]Servicio_Tercero_Cua-->" autocomplete=off>
                                     </div>
                                 </div>
                             </div>
@@ -769,10 +775,10 @@
                       <div class="card-body pt-0">                          
                           <br>                       
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">RUT *
+                              <label class="control-label col-sm-5">RUT *
                                   <p class="subtitle">RUT no mayor a 30 días</p>
                               </label>
-                              <div class="col-sm-8 row">
+                              <div class="col-sm-7 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"rut")="")-->
                                     <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this,'.pdf');" required>
                                  <!--4DELSE-->                              
@@ -782,14 +788,13 @@
                                      <div class="col-md-8">
                                         <input type="file" class="form-control" name="rut" onchange="ValidateSingleInput(this,'.pdf');">
                                      </div>                      
-                                 <!--4DENDIF-->
-                                
+                                 <!--4DENDIF-->                                
                               </div>
                           </div>
                           <br>
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">Cédula Representante Legal *</label>
-                              <div class="col-sm-8 row">
+                              <label class="control-label col-sm-5">Cédula Representante Legal *</label>
+                              <div class="col-sm-7 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"cedulaRepLegal")="")-->                                 
                                  <input type="file" class="form-control" name="cedulaRepLegal" onchange="ValidateSingleInput(this,'.pdf','.jpg');" required>  
                                  <!--4DELSE-->                              
@@ -804,10 +809,10 @@
                           </div>
                           <br>
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">Cámara de Comercio *
+                              <label class="control-label col-sm-5">Cámara de Comercio *
                                   <p class="subtitle">Camara de Comercio no mayor a 30 días.</p> 
                               </label>
-                              <div class="col-sm-8 row">
+                              <div class="col-sm-7 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"camaraComercio")="")-->                                                                  
                                  <input type="file" class="form-control" name="camaraComercio" onchange="ValidateSingleInput(this,'.pdf');" required>  
                                  <!--4DELSE-->                              
@@ -822,10 +827,10 @@
                           </div>
                           <br>
                           <div class="row form-group">
-                              <label class="control-label col-sm-4">Certificación Bancaria *
+                              <label class="control-label col-sm-5">Certificación Bancaria *
                                   <p class="subtitle">Certificación bancaria no mayor a 30 días.</p> 
                               </label>
-                              <div class="col-sm-8 row">
+                              <div class="col-sm-7 row">
                                  <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"certBancaria")="")-->
                                  <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');" required>
                                  <!--4DELSE-->                              
@@ -834,6 +839,24 @@
                                      </div>                
                                      <div class="col-md-8">                                        
                                         <input type="file" class="form-control" name="certBancaria" onchange="ValidateSingleInput(this,'.pdf');">
+                                     </div>                      
+                                <!--4DENDIF-->
+                              </div>
+                          </div>
+                          <br>
+                          <div class="row form-group">
+                              <label class="control-label col-sm-5">Otros
+                                  <p class="subtitle">En caso de ser más de un documento, por favor unifíquelo en 1 solo archivo PDF</p> 
+                              </label>
+                              <div class="col-sm-7 row">
+                                 <!--4DIF (OB Get([Proveedor]Ruta_Adjuntos;"otro")="")-->
+                                 <input type="file" class="form-control" name="otro" onchange="ValidateSingleInput(this,'.pdf');">
+                                 <!--4DELSE-->                              
+                                     <div class="col-md-4">
+                                         <h5><!--4DTEXT OB Get([Proveedor]Nombre_Adjuntos;"otro")--></h5>
+                                     </div>                
+                                     <div class="col-md-8">                                        
+                                        <input type="file" class="form-control" name="otro" onchange="ValidateSingleInput(this,'.pdf');">
                                      </div>                      
                                 <!--4DENDIF-->
                               </div>
