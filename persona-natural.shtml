@@ -181,7 +181,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label class="control-label">Segundo Apellido</label>
-                                                <input type="text" class="form-control" placeholder="" onkeyup="upperCase(this)" name="segundoApellido" required value="<!--4DTEXT [Empleados]S_Apellido-->" autocomplete=off>
+                                                <input type="text" class="form-control" placeholder="" id="segundoApellido" onkeyup="upperCase(this)" name="segundoApellido" required value="<!--4DTEXT [Empleados]S_Apellido-->" autocomplete=off>
                                             </div>
                                         </div>
                                     </div>

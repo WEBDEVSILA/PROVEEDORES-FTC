@@ -7,6 +7,7 @@ var codCiiu = new Map();
 var authSi = document.getElementById("si");
 var authNo = document.getElementById("no");
 var especialidad = document.getElementById("especialidad");
+var razonSocial = document.getElementById("razonSocial");
 
 fill();
 validateAuth();
@@ -37,6 +38,7 @@ function validateErase(element,ciiu){
 }
 
 function upperCase(element){    
+    razonSocial.value = razonSocial.value.split("/").join("");
     element.value = element.value.toString().toUpperCase();
 }
 

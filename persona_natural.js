@@ -12,6 +12,7 @@ var factSi = document.getElementById("factSi");
 var primerNombre = document.getElementById("primerNombre");
 var segundoNombre = document.getElementById("segundoNombre");
 var primerApellido = document.getElementById("primerApellido");
+var segundoApellido = document.getElementById("segundoApellido");
 var nit = document.getElementById("nit");
 var idTitular = document.getElementById("idTitular");
 var titular = document.getElementById("titular");
@@ -44,16 +45,42 @@ document.getElementById("clear").addEventListener("click", function(){
 });
 
 
-function concatName(){
-    if(segundoNombre.value == "N/A"){
+function concatName(){   
+    if(primerNombre.value == "NA"){
+        primerNombre.value = "";
+    }
+    if(segundoNombre.value == "NA"){
         segundoNombre.value = "";
     }
+    if(primerApellido.value == "NA"){
+        primerApellido.value = "";
+    }
+    if(segundoApellido.value == "NA"){
+        segundoApellido.value = "";
+    } 
     titular.value = primerNombre.value + " " +segundoNombre.value + " " + primerApellido.value;
     
 }
 
 function upperCase(element){    
     element.value = element.value.toString().toUpperCase();
+
+    primerNombre.value = primerNombre.value.split("-").join(" ");
+    segundoNombre.value = segundoNombre.value.split("-").join(" ");
+    primerApellido.value = primerApellido.value.split("-").join(" ");
+    segundoApellido.value = segundoApellido.value.split("-").join(" ");
+    primerNombre.value = primerNombre.value.split(".").join("");
+    segundoNombre.value = segundoNombre.value.split(".").join("");
+    primerApellido.value = primerApellido.value.split(".").join("");
+    segundoApellido.value = segundoApellido.value.split(".").join("");
+    primerNombre.value = primerNombre.value.split("/").join("");
+    segundoNombre.value = segundoNombre.value.split("/").join("");
+    primerApellido.value = primerApellido.value.split("/").join("");
+    segundoApellido.value = segundoApellido.value.split("/").join("");
+
+  
+
+    
 }
 
 function validateInfoEmpresa(){
